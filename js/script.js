@@ -1,144 +1,183 @@
 /* ==============================
-   Login Page JS
+   General Utilities
    ============================== */
 
+// Navigation helper
+function navigateTo(page) {
+  window.location.href = page;
+}
+
+/* ==============================
+   Login Page
+   ============================== */
 function startApp() {
   const email = document.getElementById('email').value.trim();
 
-  // Validate email
-  if (!email) {
-    alert("Please enter your UCSD email");
-    return;
-  }
+  if (!email) return alert("Please enter your UCSD email");
+  if (!email.endsWith("@ucsd.edu")) return alert("Please enter a valid UCSD email ending with @ucsd.edu");
 
-  if (!email.endsWith("@ucsd.edu")) {
-    alert("Please enter a valid UCSD email ending with @ucsd.edu");
-    return;
-  }
-
-  // Save email to localStorage for later pages
   localStorage.setItem('email', email);
-
-  // Redirect to profile setup page
   window.location.href = "profile.html";
 }
 
 /* ==============================
-   Profile Page JS
+   Profile Page
    ============================== */
 
-const selectedInterests = new Set();
-const counter = document.getElementById('interest-count');
+// Majors and Colleges
+const majors = [
+  "Computer Science (B.S.)","Computer Engineering (B.S.)","Data Science (B.S.)",
+  "Biology (B.S.)","Human Biology (B.S.)","Microbiology (B.S.)",
+  "Cognitive Science (B.S.)","Psychology (B.S.)","Economics (B.A.)",
+  "Mathematics (B.S.)","Mechanical Engineering (B.S.)","Electrical Engineering (B.S.)",
+  "Political Science (B.A.)","Sociology (B.A.)","Visual Arts (B.A.)","Music (B.A.)",
+  "Undeclared"
+];
 
-// Toggle interests
-document.querySelectorAll('.interest-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const interest = btn.dataset.interest;
-    if (selectedInterests.has(interest)) {
-      selectedInterests.delete(interest);
-      btn.classList.remove('selected');
-    } else {
-      if (selectedInterests.size >= 3) {
-        alert("You can only select up to 3 interests");
-        return;
-      }
-      selectedInterests.add(interest);
-      btn.classList.add('selected');
+const colleges = ["Revelle","ERC","Muir","Marshall","Warren","Sixth","Seventh","Eighth"];
+
+// Dropdown search helper
+function setupSearch(inputId, dropdownId, dataList) {
+  const input = document.getElementById(inputId);
+  const dropdown = document.getElementById(dropdownId);
+  if (!input || !dropdown) return;
+
+  input.addEventListener("input", () => {
+    const query = input.value.toLowerCase();
+    dropdown.innerHTML = "";
+
+    if (!query) {
+      dropdown.style.display = "none";
+      return;
     }
-    updateCounter();
-  });
-});
 
-// Update counter
+    const filtered = dataList.filter(item => item.toLowerCase().includes(query));
+    filtered.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "dropdown-item";
+      div.textContent = item;
+      div.addEventListener("click", () => {
+        input.value = item;
+        dropdown.style.display = "none";
+      });
+      dropdown.appendChild(div);
+    });
+
+    dropdown.style.display = filtered.length ? "block" : "none";
+  });
+
+  // Hide dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+}
+
+// Track selected interests
+const selectedInterests = new Set();
 function updateCounter() {
+  const counter = document.getElementById('interest-count');
+  if (!counter) return;
   const count = selectedInterests.size;
   counter.textContent = `${count} interest${count !== 1 ? 's' : ''} selected`;
 }
 
 // Finish profile
 function finishProfile() {
-  const name = document.getElementById('name').value.trim();
-  const major = document.getElementById('major').value;
-  const college = document.getElementById('college').value;
+  const name = document.getElementById('name')?.value.trim() || "";
+  const major = document.getElementById('major-search')?.value.trim() || "";
+  const college = document.getElementById('college-search')?.value.trim() || "";
 
   if (!name || !major || !college) {
-    alert("Please fill out name, major, and college");
-    return;
+    return alert("Please fill out name, major, and college");
   }
 
-  // Save to localStorage
   localStorage.setItem('name', name);
   localStorage.setItem('major', major);
   localStorage.setItem('college', college);
   localStorage.setItem('interests', JSON.stringify([...selectedInterests]));
 
-  // Go to home page
   window.location.href = "home.html";
 }
 
-// Load saved profile data if available
-document.addEventListener("DOMContentLoaded", () => {
-  const name = localStorage.getItem('name');
-  const major = localStorage.getItem('major');
-  const college = localStorage.getItem('college');
-  const interests = JSON.parse(localStorage.getItem('interests') || "[]");
-
-  if (name) document.getElementById('name').value = name;
-  if (major) document.getElementById('major').value = major;
-  if (college) document.getElementById('college').value = college;
-
-  interests.forEach(interest => {
-    const btn = document.querySelector(`.interest-btn[data-interest="${interest}"]`);
-    if (btn) {
-      btn.classList.add('selected');
-      selectedInterests.add(interest);
-    }
-  });
-
-  updateCounter();
-});
 /* ==============================
-   Home Page JS
+   DOM Loaded
    ============================== */
 document.addEventListener("DOMContentLoaded", () => {
-  // Load profile info from localStorage
-  const name = localStorage.getItem("name") || "Student"; // ✅ use 'name'
-  const major = localStorage.getItem("major") || "";
-  const college = localStorage.getItem("college") || "";
-  const interests = JSON.parse(localStorage.getItem("interests") || "[]");
+  // ===== Profile Page =====
+  if (document.getElementById('name')) {
+    // Setup dropdowns
+    setupSearch("major-search", "major-dropdown", majors);
+    setupSearch("college-search", "college-dropdown", colleges);
 
-  // Display greeting
-  document.getElementById("greeting").innerText = `Welcome, ${name}!`;
+    // Load saved profile data
+    const name = localStorage.getItem('name');
+    const major = localStorage.getItem('major');
+    const college = localStorage.getItem('college');
+    const interests = JSON.parse(localStorage.getItem('interests') || "[]");
 
-  // Display major, college, and interests
-  const profileInfoEl = document.getElementById("profile-info");
-  const interestText = interests.length ? interests.join(", ") : "No interests selected";
-  let profileText = "";
-  if (major) profileText += `${major} major`;
-  if (college) profileText += `${major ? ", " : ""}${college} College`;
-  profileText += `\nInterests: ${interestText}`;
-  profileInfoEl.innerText = profileText;
+    if (name) document.getElementById('name').value = name;
+    if (major) document.getElementById('major-search').value = major;
+    if (college) document.getElementById('college-search').value = college;
 
-  // Recommended cards
-  const recommendations = [
-    { title: "Math Workshop", desc: "Boost your calculus skills", link: "#" },
-    { title: "Coding Club Meetup", desc: "Meet fellow programmers", link: "#" },
-    { title: "Volunteering Fair", desc: "Find ways to give back", link: "#" },
-  ];
+    // Setup interest buttons
+    document.querySelectorAll('.interest-btn').forEach(btn => {
+      const interest = btn.dataset.interest;
+      if (interests.includes(interest)) {
+        btn.classList.add('selected');
+        selectedInterests.add(interest);
+      }
 
-  const recContainer = document.getElementById("recommendations");
-  recommendations.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `<h3>${item.title}</h3><p>${item.desc}</p>`;
-    card.addEventListener("click", () => {
-      window.location.href = item.link;
+      btn.addEventListener('click', () => {
+        if (selectedInterests.has(interest)) {
+          selectedInterests.delete(interest);
+          btn.classList.remove('selected');
+        } else {
+          if (selectedInterests.size >= 3) return alert("You can only select up to 3 interests");
+          selectedInterests.add(interest);
+          btn.classList.add('selected');
+        }
+        updateCounter();
+      });
     });
-    recContainer.appendChild(card);
-  });
-});
 
-// Navigation helper
-function navigateTo(page) {
-  window.location.href = page;
-}
+    updateCounter();
+  }
+
+  // ===== Home Page =====
+  if (document.getElementById('greeting')) {
+    const name = localStorage.getItem("name") || "Student";
+    const major = localStorage.getItem("major") || "";
+    const college = localStorage.getItem("college") || "";
+    const interests = JSON.parse(localStorage.getItem("interests") || "[]");
+
+    document.getElementById("greeting").innerText = `Welcome, ${name}!`;
+
+    const profileInfoEl = document.getElementById("profile-info");
+    if (profileInfoEl) {
+      const interestText = interests.length ? interests.join(", ") : "No interests selected";
+      let profileText = "";
+      if (major) profileText += `${major} major`;
+      if (college) profileText += `${major ? ", " : ""}${college} College`;
+      profileText += `\nInterests: ${interestText}`;
+      profileInfoEl.innerText = profileText;
+    }
+
+    const recContainer = document.getElementById("recommendations");
+    if (recContainer) {
+      const recommendations = [
+        { title: "Math Workshop", desc: "Boost your calculus skills", link: "#" },
+        { title: "Coding Club Meetup", desc: "Meet fellow programmers", link: "#" },
+        { title: "Volunteering Fair", desc: "Find ways to give back", link: "#" },
+      ];
+      recommendations.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<h3>${item.title}</h3><p>${item.desc}</p>`;
+        card.addEventListener("click", () => navigateTo(item.link));
+        recContainer.appendChild(card);
+      });
+    }
+  }
+});

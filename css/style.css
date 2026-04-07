@@ -186,6 +186,31 @@
   transform: translateY(-2px);
 }
 
+.dropdown-list {
+  display: none;
+  position: absolute;
+  width: 50%;
+  background: #ffffff;
+  border-radius: 14px;
+  margin-top: 6px;
+
+  /* ✨ depth */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+  /* ✨ smooth */
+  overflow: hidden;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 10;
+
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.dropdown-item {
+  padding: 14px 16px; /* more breathing room */
+  line-height: 1.4;   /* less cramped text */
+}
+
 /* ==============================
    General Reset & Fonts
    ============================== */

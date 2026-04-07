@@ -19,34 +19,21 @@
       <!-- ===== Major + College Row ===== -->
       <div class="row">
 
+        <!-- ===== Major ===== -->
         <div class="field">
-          <p class="section-label">Major</p>
-          <select id="major" class="dropdown">
-            <option value="">Select major</option>
-            <option>Computer Science</option>
-            <option>Biology</option>
-            <option>Economics</option>
-            <option>Psychology</option>
-            <option>Math</option>
-            <option>Engineering</option>
-          </select>
+            <p class="section-label">Major</p>
+            <input type="text" id="major-search" class="text-input" placeholder="Search major..." />
+            <div id="major-dropdown" class="dropdown-list"></div>
         </div>
 
+        <!-- ===== College ===== -->
         <div class="field">
-          <p class="section-label">College</p>
-          <select id="college" class="dropdown">
-            <option value="">Select college</option>
-            <option>Revelle</option>
-            <option>Muir</option>
-            <option>Marshall</option>
-            <option>Warren</option>
-            <option>Sixth</option>
-            <option>Seventh</option>
-          </select>
+            <p class="section-label">College</p>
+            <input type="text" id="college-search" class="text-input" placeholder="Search college..." />
+            <div id="college-dropdown" class="dropdown-list"></div>
         </div>
 
-      </div>
-
+        </div>
       <!-- ===== Interests ===== -->
       <p class="section-label">Select your top 3 interests</p>
       <p id="interest-count" class="interest-count">0 interests selected</p>
