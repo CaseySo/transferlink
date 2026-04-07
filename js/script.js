@@ -26,12 +26,9 @@ function startApp() {
 
 // Majors and Colleges
 const majors = [
-  "Computer Science (B.S.)","Computer Engineering (B.S.)","Data Science (B.S.)",
-  "Biology (B.S.)","Human Biology (B.S.)","Microbiology (B.S.)",
-  "Cognitive Science (B.S.)","Psychology (B.S.)","Economics (B.A.)",
-  "Mathematics (B.S.)","Mechanical Engineering (B.S.)","Electrical Engineering (B.S.)",
-  "Political Science (B.A.)","Sociology (B.A.)","Visual Arts (B.A.)","Music (B.A.)",
-  "Undeclared"
+  "Computer Science (B.S.)","Data Science (B.S.)",
+  "Biology (B.S.)", "Cognitive Science (B.S.)","Psychology (B.S.)","Economics (B.A.)",
+  "Mathematics (B.S.)","Mechanical Engineering (B.S.)", "Visual Arts (B.A.)","Public Health (B.S.)"
 ];
 
 const colleges = ["Revelle","ERC","Muir","Marshall","Warren","Sixth","Seventh","Eighth"];
@@ -180,4 +177,58 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+});
+/* ==============================
+   Courses Page
+   ============================== */
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const name = localStorage.getItem("name") || "Student";
+  const major = localStorage.getItem("major") || "";
+  const college = localStorage.getItem("college") || "";
+"Computer Science (B.S.)","Data Science (B.S.)",
+  "Biology (B.S.)", "Cognitive Science (B.S.)","Psychology (B.S.)","Economics (B.A.)",
+  "Mathematics (B.S.)","Mechanical Engineering (B.S.)", "Visual Arts (B.A.)","Public Health (B.S.)"
+  // Example mapping of majors → requirement links
+  const majorLinks = {
+    "Computer Science (B.S.)": "https://catalog.ucsd.edu/curric/CSE-ug.html?_gl=1*qdu0gw*_gcl_au*NjYyODM3OTAxLjE3NzU2MDExOTk.*_ga*MjQ1Njc3NzI1LjE3NTg2NTk4MzA.*_ga_PWJGRGMV0T*czE3NzU2MDM2NDIkbzMkZzAkdDE3NzU2MDM2NDIkajYwJGwwJGgw",
+    "Data Science (B.S.)": "https://catalog.ucsd.edu/curric/DSC.html",
+    "Biology (B.S.)": "https://biology.ucsd.edu/education/undergrad/major-minor-programs/majors/requirements/index.html",
+    "Psychology (B.S.)": "https://catalog.ucsd.edu/curric/PSYC-ug.html",
+    "Cognitive Science (B.S.)": "https://cogsci.ucsd.edu/undergraduates/major/index.html",
+    "Mathematics (B.S.)": "https://catalog.ucsd.edu/curric/MATH-ug.html",
+    "Mechanical Engineering (B.S.)": "https://mae.ucsd.edu/undergrad/mechanical-engineering",
+    "Visual Arts (B.A.)": "https://visarts.ucsd.edu/undergrad/major-req/index.html",
+    "Public Health (B.S.)": "https://ph.ucsd.edu/undergrad/majors/effective2024/bsph.html",
+    "Economics (B.A.)": "https://economics.ucsd.edu/undergraduate-program/major-minor-requirements/index.html"
+  };
+
+  const collegeLinks = {
+    "Revelle": "https://revelle.ucsd.edu/_files/academics/rev-grad-req-tran",
+    "Muir": "https://muir.ucsd.edu/writing/transfer/index.html",
+    "Marshall": "https://marshall.ucsd.edu/academics/transfer-ge.html",
+    "ERC": "https://roosevelt.ucsd.edu/academics/gen-ed/index.html",
+    "Warren": "https://warren.ucsd.edu/academics/general-education/index.html",
+    "Sixth": "https://sixth.ucsd.edu/academics/requirements/transfer-requirements.html",
+    "Seventh": "https://seventh.ucsd.edu/academics/degree-requirements/degree-requirements-transfers.html",
+    "Eighth": "https://eighth.ucsd.edu/academics/degree-requirements/transfer.html",
+  };
+
+  // Update major box
+  const majorLinkEl = document.getElementById("major-link");
+  majorLinkEl.href = majorLinks[major] || "#";
+  document.getElementById("major-text").innerText = major || "Your major not set";
+
+  // Update college box
+  const geLinkEl = document.getElementById("ge-link");
+  geLinkEl.href = collegeLinks[college] || "#";
+  document.getElementById("ge-text").innerText = college || "Your college not set";
+});
+
+x// Highlight current page pill
+document.addEventListener("DOMContentLoaded", () => {
+  const page = window.location.pathname.split("/").pop(); // e.g., 'courses.html'
+  const pillId = page.split(".")[0] + "-pill"; // 'courses-pill'
+  const pill = document.getElementById(pillId);
+  if (pill) pill.classList.add("selected");
 });

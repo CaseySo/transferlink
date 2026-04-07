@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TransferLink Courses</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="home-container">
+
+    <!-- ===== Hero / Header ===== -->
+    <div class="hero">
+      <h1>Courses & Requirements</h1>
+
+      <p id="profile-info"></p>
+      <p id="subtext">Here's what's happening in your courses and what to expect.</p>
+    </div>
+    <!-- ===== Top Navigation Pills ===== -->
+        <div class="top-nav">
+        <button class="nav-pill" onclick="navigateTo('home.html')" id="home-pill">Home</button>
+        <button class="nav-pill" onclick="navigateTo('events.html')" id="events-pill">Events</button>
+        <button class="nav-pill" onclick="navigateTo('community.html')" id="community-pill">Community</button>
+        <button class="nav-pill selected" onclick="navigateTo('courses.html')" id="courses-pill">Courses</button>
+        <button class="nav-pill" onclick="navigateTo('guide.html')" id="guide-pill">Guide</button>
+        </div>
+    <!-- ===== Two Main Boxes ===== -->
+    <div class="course-boxes">
+      <!-- Major -->
+      <div class="card" id="major-box">
+        <h3>Major Requirements</h3>
+        <p id="major-text">View your major's requirements</p>
+        <a id="major-link" href="#" target="_blank">Go to Major Requirements</a>
+      </div>
+
+      <!-- College GEs -->
+      <div class="card" id="ge-box">
+        <h3>College GEs</h3>
+        <p id="ge-text">View your college's GE requirements</p>
+        <a id="ge-link" href="#" target="_blank">Go to College GEs</a>
+      </div>
+    </div>
+
+    <!-- ===== Notes / Tips ===== -->
+    <h2>Helpful Tips</h2>
+    <ul>
+      <li>Check the <a href="#">UCSD General Catalog</a> for course info.</li>
+      <li>Ask your college advisors if you're unsure about GEs or major planning.</li>
+      <li>Use EASy to petition for prerequisites or course substitutions.</li>
+      <li>Plan your courses early to avoid overloading quarters.</li>
+    </ul>
+
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
