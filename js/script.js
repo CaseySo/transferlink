@@ -30,28 +30,32 @@ function startApp() {
 const selectedInterests = new Set();
 const counter = document.getElementById('interest-count');
 
+// Toggle interests
 document.querySelectorAll('.interest-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const interest = btn.dataset.interest;
-
     if (selectedInterests.has(interest)) {
       selectedInterests.delete(interest);
       btn.classList.remove('selected');
     } else {
+      if (selectedInterests.size >= 3) {
+        alert("You can only select up to 3 interests");
+        return;
+      }
       selectedInterests.add(interest);
       btn.classList.add('selected');
     }
-
     updateCounter();
   });
 });
 
-// Update counter text
+// Update counter
 function updateCounter() {
   const count = selectedInterests.size;
   counter.textContent = `${count} interest${count !== 1 ? 's' : ''} selected`;
 }
-// Save data
+
+// Finish profile
 function finishProfile() {
   const name = document.getElementById('name').value.trim();
   const major = document.getElementById('major').value;
@@ -62,15 +66,17 @@ function finishProfile() {
     return;
   }
 
+  // Save to localStorage
   localStorage.setItem('name', name);
   localStorage.setItem('major', major);
   localStorage.setItem('college', college);
   localStorage.setItem('interests', JSON.stringify([...selectedInterests]));
 
+  // Go to home page
   window.location.href = "home.html";
 }
 
-// Load saved data
+// Load saved profile data if available
 document.addEventListener("DOMContentLoaded", () => {
   const name = localStorage.getItem('name');
   const major = localStorage.getItem('major');
@@ -81,23 +87,39 @@ document.addEventListener("DOMContentLoaded", () => {
   if (major) document.getElementById('major').value = major;
   if (college) document.getElementById('college').value = college;
 
-  document.querySelectorAll('.interest-btn').forEach(btn => {
-    if (interests.includes(btn.dataset.interest)) {
+  interests.forEach(interest => {
+    const btn = document.querySelector(`.interest-btn[data-interest="${interest}"]`);
+    if (btn) {
       btn.classList.add('selected');
-      selectedInterests.add(btn.dataset.interest);
+      selectedInterests.add(interest);
     }
   });
-});
 
+  updateCounter();
+});
 /* ==============================
    Home Page JS
    ============================== */
 document.addEventListener("DOMContentLoaded", () => {
-  // Load username from profile
-  const username = localStorage.getItem("name") || "Student"; // <-- correct key
-  document.getElementById("greeting").innerText = `Welcome, ${username}!`;
+  // Load profile info from localStorage
+  const name = localStorage.getItem("name") || "Student"; // ✅ use 'name'
+  const major = localStorage.getItem("major") || "";
+  const college = localStorage.getItem("college") || "";
+  const interests = JSON.parse(localStorage.getItem("interests") || "[]");
 
-  // Recommended cards (dynamic)
+  // Display greeting
+  document.getElementById("greeting").innerText = `Welcome, ${name}!`;
+
+  // Display major, college, and interests
+  const profileInfoEl = document.getElementById("profile-info");
+  const interestText = interests.length ? interests.join(", ") : "No interests selected";
+  let profileText = "";
+  if (major) profileText += `${major} major`;
+  if (college) profileText += `${major ? ", " : ""}${college} College`;
+  profileText += `\nInterests: ${interestText}`;
+  profileInfoEl.innerText = profileText;
+
+  // Recommended cards
   const recommendations = [
     { title: "Math Workshop", desc: "Boost your calculus skills", link: "#" },
     { title: "Coding Club Meetup", desc: "Meet fellow programmers", link: "#" },
@@ -115,3 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
     recContainer.appendChild(card);
   });
 });
+
+// Navigation helper
+function navigateTo(page) {
+  window.location.href = page;
+}
