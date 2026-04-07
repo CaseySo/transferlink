@@ -1,0 +1,290 @@
+/* ==============================
+   Login Page Styles
+   ============================== */
+
+/* ----- Background ----- */
+.login-background {
+  background-image: url('../images/geisel.png'); /* your photo */
+  background-repeat: no-repeat;
+  background-position: center center; /* center image */
+  background-size: cover; /* cover entire area */
+  background-color: #000; /* fallback color */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* ----- Login Box ----- */
+.login-box {
+  position: relative; /* above overlay */
+  background-color: rgba(255,255,255,0.95);
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+/* ----- Logo ----- */
+.login-box .logo {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+
+/* ----- Welcome Text ----- */
+.login-box h1 {
+  margin-bottom: 0.5rem;
+  color: #00274D; /* UCSD Blue */
+}
+
+.login-box p {
+  margin-bottom: 1.5rem;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* ----- Input Fields ----- */
+.login-box input {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.5rem 0;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* ----- Button ----- */
+.login-box button {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 1rem;
+  border-radius: 12px;
+  border: none;
+  background-color: #00274D; /* UCSD blue */
+  color: #FFC72C; /* UCSD gold */
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.login-box button:hover {
+  background-color: #0055A5;
+  transform: translateY(-2px);
+}
+
+/* ==============================
+   Profile Page Styles
+   ============================== */
+
+.section-label {
+  margin: 0.8rem 0 0.3rem;
+  font-weight: bold;
+  color: #00274D;
+}
+
+/* ---------- Inputs ---------- */
+.text-input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+}
+
+/* ---------- Row Layout ---------- */
+.row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.field {
+  flex: 1;
+}
+
+/* ---------- Dropdown ---------- */
+.dropdown {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+}
+.interest-count {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+/* ---------- Interests Grid ---------- */
+.interests-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Interest Pills ---------- */
+.interest-btn {
+  padding: 0.5rem;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* SELECTED STATE */
+.interest-btn.selected {
+  background-color: #FFC72C; /* UCSD blue */
+  color: #011388; /* gold text */
+  border: 1px solid #00274D;
+  transform: scale(1.05);
+}
+
+/* ---------- Finish Button ---------- */
+.finish-btn {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 25px;
+  border: none;
+  background-color: #FFB84D;
+  color: #00274D;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.finish-btn:hover {
+  background-color: #FFA500;
+}
+
+/* ---------- Scroll Box ---------- */
+.login-box {
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.9);
+}
+
+/* ==============================
+   Home Page Styles
+   ============================== */
+
+/* ==============================
+   Home Page Styling
+   ============================== */
+
+/* ---------- Page Background ---------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #eaf2fb, #ffffff);
+}
+
+/* ---------- Container ---------- */
+.home-container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* ---------- Greeting Section ---------- */
+#greeting {
+  font-size: 2rem;
+  color: #00274D;
+  margin-bottom: 0.2rem;
+}
+
+#subtext {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Top Pills ---------- */
+.top-nav {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.nav-pill {
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  border: none;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-pill:hover {
+  background: #00274D;
+  color: #FFC72C;
+  transform: translateY(-2px);
+}
+
+/* ---------- Section Titles ---------- */
+h2 {
+  color: #00274D;
+  margin-bottom: 0.8rem;
+}
+
+/* ---------- Cards Grid ---------- */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  padding: 1.2rem;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle gradient glow */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(0,39,77,0.05));
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* ---------- Card Text ---------- */
+.card h3 {
+  margin-bottom: 0.4rem;
+  color: #00274D;
+}
+
+.card p {
+  color: #555;
+  font-size: 0.9rem;
+}
+.hero {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  margin-bottom: 1.5rem;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Setup</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="login-background">
+    <div class="login-box">
+
+      <h1>Set up your profile</h1>
+      <p>Help us personalize your TransferLink experience!</p>
+
+      <!-- ===== Name ===== -->
+      <p class="section-label">Your Name</p>
+      <input type="text" id="name" class="text-input" placeholder="Enter your name" />
+
+      <!-- ===== Major + College Row ===== -->
+      <div class="row">
+
+        <div class="field">
+          <p class="section-label">Major</p>
+          <select id="major" class="dropdown">
+            <option value="">Select major</option>
+            <option>Computer Science</option>
+            <option>Biology</option>
+            <option>Economics</option>
+            <option>Psychology</option>
+            <option>Math</option>
+            <option>Engineering</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <p class="section-label">College</p>
+          <select id="college" class="dropdown">
+            <option value="">Select college</option>
+            <option>Revelle</option>
+            <option>Muir</option>
+            <option>Marshall</option>
+            <option>Warren</option>
+            <option>Sixth</option>
+            <option>Seventh</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- ===== Interests ===== -->
+      <p class="section-label">Select your top 3 interests</p>
+      <p id="interest-count" class="interest-count">0 interests selected</p>
+      <div class="interests-list">
+
+        <button class="interest-btn" data-interest="AI">AI</button>
+        <button class="interest-btn" data-interest="Robotics">Robotics</button>
+        <button class="interest-btn" data-interest="Music">Music</button>
+        <button class="interest-btn" data-interest="Sports">Sports</button>
+
+        <button class="interest-btn" data-interest="Art">Art</button>
+        <button class="interest-btn" data-interest="Gaming">Gaming</button>
+        <button class="interest-btn" data-interest="Coding">Coding</button>
+        <button class="interest-btn" data-interest="Fitness">Fitness</button>
+
+        <button class="interest-btn" data-interest="Photography">Photo</button>
+        <button class="interest-btn" data-interest="Travel">Travel</button>
+        <button class="interest-btn" data-interest="Cooking">Cooking</button>
+        <button class="interest-btn" data-interest="Movies">Movies</button>
+
+        <button class="interest-btn" data-interest="Business">Business</button>
+        <button class="interest-btn" data-interest="Volunteering">Volunteer</button>
+        <button class="interest-btn" data-interest="Theater">Theater</button>
+        <button class="interest-btn" data-interest="Fashion">Fashion</button>
+
+      </div>
+
+      <!-- ===== Finish ===== -->
+      <button class="finish-btn" onclick="finishProfile()">Finish</button>
+
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
