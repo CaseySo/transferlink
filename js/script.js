@@ -92,36 +92,26 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ==============================
    Home Page JS
    ============================== */
-// Load user data from localStorage
-const name = localStorage.getItem('name') || "Student";
-const major = localStorage.getItem('major') || "";
-const college = localStorage.getItem('college') || "";
-const interests = JSON.parse(localStorage.getItem('interests') || "[]");
+document.addEventListener("DOMContentLoaded", () => {
+  // Load username from profile
+  const username = localStorage.getItem("name") || "Student"; // <-- correct key
+  document.getElementById("greeting").innerText = `Welcome, ${username}!`;
 
-// ===== Greeting Section =====
-const greetingEl = document.getElementById('greeting');
-const subtextEl = document.getElementById('subtext');
+  // Recommended cards (dynamic)
+  const recommendations = [
+    { title: "Math Workshop", desc: "Boost your calculus skills", link: "#" },
+    { title: "Coding Club Meetup", desc: "Meet fellow programmers", link: "#" },
+    { title: "Volunteering Fair", desc: "Find ways to give back", link: "#" },
+  ];
 
-greetingEl.textContent = `Welcome to UCSD, ${name}!`;
-subtextEl.textContent = `${major}${major && college ? " • " : ""}${college}`;
-
-// ===== Recommendations based on interests =====
-const recommendations = document.getElementById('recommendations');
-
-const interestMap = {
-  AI: "🤖 Join the AI Club",
-  Coding: "💻 Try hackathons",
-  Music: "🎵 Campus concerts",
-  Sports: "🏀 Intramural teams",
-  Art: "🎨 Craft center",
-  Fitness: "💪 RIMAC gym"
-};
-
-interests.forEach(interest => {
-  if (interestMap[interest]) {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `<h3>${interest}</h3><p>${interestMap[interest]}</p>`;
-    recommendations.appendChild(card);
-  }
+  const recContainer = document.getElementById("recommendations");
+  recommendations.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `<h3>${item.title}</h3><p>${item.desc}</p>`;
+    card.addEventListener("click", () => {
+      window.location.href = item.link;
+    });
+    recContainer.appendChild(card);
+  });
 });

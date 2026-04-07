@@ -9,41 +9,42 @@
 
   <div class="home-container">
 
-    <!-- ===== Greeting ===== -->
+    <!-- ===== Hero / Greeting ===== -->
+    <!-- Hero / Greeting Section -->
     <div class="hero">
-    <h1 id="greeting">Welcome to UCSD!</h1>
-    <p id="subtext"></p>
+    <h1 id="greeting">Welcome!</h1> <!-- JS will replace this with the name -->
+    <p id="subtext">Here's what's happening on campus today.</p>
     </div>
 
     <!-- ===== Top Navigation Pills ===== -->
     <div class="top-nav">
-      <button class="nav-pill">Events</button>
-      <button class="nav-pill">Community</button>
-      <button class="nav-pill">Courses</button>
-      <button class="nav-pill">Guide</button>
+      <button class="nav-pill" onclick="navigateTo('events.html')">Events</button>
+      <button class="nav-pill" onclick="navigateTo('community.html')">Community</button>
+      <button class="nav-pill" onclick="navigateTo('courses.html')">Courses</button>
+      <button class="nav-pill" onclick="navigateTo('guide.html')">Guide</button>
     </div>
 
     <!-- ===== Recommended Section ===== -->
     <h2>Recommended for you</h2>
     <div id="recommendations" class="card-container">
-      <!-- dynamically filled -->
+      <!-- dynamically filled via JS -->
     </div>
 
-    <!-- ===== Quick Tools ===== -->
+    <!-- ===== Quick Tools Section ===== -->
     <h2>Quick Tools</h2>
     <div class="card-container">
 
-      <div class="card">
+      <div class="card" onclick="navigateTo('courses.html')">
         <h3>Course Planner</h3>
         <p>See what classes to take next</p>
       </div>
 
-      <div class="card">
+      <div class="card" onclick="navigateTo('guide.html')">
         <h3>Transfer Guide</h3>
         <p>Learn how UCSD systems work</p>
       </div>
 
-      <div class="card">
+      <div class="card" onclick="navigateTo('community.html')">
         <h3>Find Clubs</h3>
         <p>Meet people with similar interests</p>
       </div>

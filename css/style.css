@@ -174,117 +174,77 @@
    Home Page Styles
    ============================== */
 
-/* ==============================
-   Home Page Styling
-   ============================== */
-
-/* ---------- Page Background ---------- */
+/* ===== Global ===== */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #eaf2fb, #ffffff);
+  background: linear-gradient(to right, #f0f4f8, #e2e8f0); /* soft gradient */
+  color: #00274D; /* UCSD blue */
 }
 
-/* ---------- Container ---------- */
+/* ===== Container ===== */
 .home-container {
+  background: #ffffff; /* solid white for readability */
+  margin: 2rem auto;
   padding: 2rem;
+  border-radius: 20px;
   max-width: 900px;
-  margin: auto;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
-/* ---------- Greeting Section ---------- */
-#greeting {
-  font-size: 2rem;
-  color: #00274D;
-  margin-bottom: 0.2rem;
+/* ===== Hero / Greeting ===== */
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
-#subtext {
-  color: #555;
-  margin-bottom: 1.5rem;
-}
-
-/* ---------- Top Pills ---------- */
+/* ===== Top Navigation Pills ===== */
 .top-nav {
   display: flex;
-  gap: 0.6rem;
+  justify-content: center;
+  gap: 1rem;
   margin-bottom: 2rem;
-  flex-wrap: wrap;
 }
-
 .nav-pill {
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 50px;
   border: none;
-  background: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.nav-pill:hover {
-  background: #00274D;
-  color: #FFC72C;
-  transform: translateY(-2px);
-}
-
-/* ---------- Section Titles ---------- */
-h2 {
+  background-color: #FFB84D;
   color: #00274D;
-  margin-bottom: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.nav-pill:hover {
+  background-color: #FFA500;
+  transform: scale(1.05);
 }
 
-/* ---------- Cards Grid ---------- */
+/* ===== Card container ===== */
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
-/* ---------- Cards ---------- */
+/* ===== Cards ===== */
 .card {
-  padding: 1.2rem;
-  border-radius: 18px;
-  background: white;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
+  background-color: #f0f0f0;
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
-/* subtle gradient glow */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent, rgba(0,39,77,0.05));
-  opacity: 0;
-  transition: 0.2s;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
 .card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
-
-/* ---------- Card Text ---------- */
 .card h3 {
-  margin-bottom: 0.4rem;
-  color: #00274D;
-}
-
-.card p {
-  color: #555;
-  font-size: 0.9rem;
-}
-.hero {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  margin-bottom: 1.5rem;
+  margin-top: 0;
 }
