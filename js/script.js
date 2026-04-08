@@ -255,115 +255,148 @@ document.addEventListener("DOMContentLoaded", () => {
    Events Page JS
    ============================== */
 document.addEventListener("DOMContentLoaded", () => {
-
-  const interests = JSON.parse(localStorage.getItem("interests") || "[]");
-
-  const events = [
-    {
-      title: "AI Club Meetup",
-      desc: "Talk about AI projects and meet others",
-      date: "April 10",
-      time: "6:00 PM",
-      org: "AI Club",
-      tag: "AI",
-      type: "Academic"
-    },
-    {
-      title: "Basketball Night",
-      desc: "Pickup games at RIMAC",
-      date: "April 12",
-      time: "8:00 PM",
-      org: "Rec Center",
-      tag: "Sports",
-      type: "Social"
-    },
-    {
-      title: "Art Workshop",
-      desc: "Relax and paint",
-      date: "April 15",
-      time: "5:00 PM",
-      org: "Visual Arts Club",
-      tag: "Art",
-      type: "Social"
-    },
-    {
-      title: "Hackathon",
-      desc: "Build projects & win prizes",
-      date: "April 20",
-      time: "10:00 AM",
-      org: "ACM",
-      tag: "Coding",
-      type: "Career"
-    }
-  ];
-
   const personalContainer = document.getElementById("personal-events");
   const allContainer = document.getElementById("all-events");
   const savedContainer = document.getElementById("saved-events");
 
-  function getSavedEvents() {
-    return JSON.parse(localStorage.getItem("savedEvents") || "[]");
-  }
+  const interests = JSON.parse(localStorage.getItem("interests") || "[]");
+  const savedEvents = JSON.parse(localStorage.getItem("savedEvents") || "[]");
 
-  function checkIfSaved(event) {
-    return getSavedEvents().some(e => e.title === event.title);
+  const events = [
+   {
+     title: "Bingo",
+     desc: "Talk about AI projects and meet others",
+     date: "April 10",
+     time: "6:00 PM",
+     org: "AI Club",
+     tag: "Games",
+     image: "images/bingo.jpg"
+   },
+   {
+     title: "Pitch Perfect",
+     desc: "Price Center Theater",
+     date: "April 16",
+     time: "8:00 PM",
+     org: "UCSD",
+     tag: "Movie",
+     image: "images/pitch.jpg"
+   },
+   {
+     title: "Company Tour Viasat",
+     desc: "Visit Viasat's Carlsbad office.",
+     date: "April 17",
+     time: "9:00 AM",
+     org: "AIAA",
+     tag: "Professional Development",
+     image: "images/viasat.png"
+   },
+   {
+     title: "Microadventure Hike",
+     desc: "Tritons Rise With Outlook",
+     date: "April 24",
+     time: "?",
+     org: "Recreation",
+     tag: "Nature",
+     image: "images/nature.png"
+   },
+   {
+     title: "Transfer Career Day",
+     desc: "Headshots, resume review, public speaking tips",
+     date: "April 30",
+     time: "2:00 PM",
+     org: "Triton Transfer",
+     tag: "Professional Development",
+     image: "images/transfer.jpg"
+   }
+ ];
+
+
+  // ----- Helpers -----
+  function isSaved(event) {
+    return savedEvents.some(e => e.title === event.title);
   }
 
   function toggleSave(event) {
-    let saved = getSavedEvents();
-    const exists = checkIfSaved(event);
-
-    if (exists) {
-      saved = saved.filter(e => e.title !== event.title);
+    const index = savedEvents.findIndex(e => e.title === event.title);
+    if (index > -1) {
+      savedEvents.splice(index, 1);
     } else {
-      saved.push(event);
+      savedEvents.push(event);
     }
-
-    localStorage.setItem("savedEvents", JSON.stringify(saved));
+    localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+    updateUI(currentFilter);
   }
 
   function createCard(event) {
     const card = document.createElement("div");
-    card.className = "card event-card";
+    card.className = "event-card";
 
-    const isSaved = checkIfSaved(event);
-
+    // Card content
     card.innerHTML = `
       <h3>${event.title}</h3>
       <p class="event-desc">${event.desc}</p>
-
       <div class="event-details">
-        <p>📅 ${event.date}</p>
-        <p>⏰ ${event.time}</p>
-        <p>🏫 ${event.org}</p>
+        <p><strong>Date:</strong> ${event.date}</p>
+        <p><strong>Time:</strong> ${event.time}</p>
+        <p><strong>Org:</strong> ${event.org}</p>
       </div>
-
       <div class="event-footer">
         <span class="event-tag">${event.tag}</span>
-        <span class="event-type">${event.type}</span>
+        <button class="save-btn ${isSaved(event) ? "saved" : ""}">
+          ${isSaved(event) ? "Unsave" : "Save"}
+        </button>
       </div>
-
-      <button class="save-btn ${isSaved ? "saved" : ""}">
-        ${isSaved ? "★ Saved" : "☆ Save"}
-      </button>
     `;
 
-    const btn = card.querySelector(".save-btn");
-    btn.addEventListener("click", () => {
+    // Save button
+    const saveBtn = card.querySelector(".save-btn");
+    saveBtn.addEventListener("click", e => {
+      e.stopPropagation(); // prevent card click
       toggleSave(event);
-      updateUI();
+    });
+
+    // Modal popup
+    card.addEventListener("click", () => {
+      openModal(event.image, event.title);
     });
 
     return card;
   }
 
+  // ----- Modal -----
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.innerHTML = `
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <img src="" alt="Event Flyer" id="modal-image">
+      <h3 id="modal-title"></h3>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const modalImg = modal.querySelector("#modal-image");
+  const modalTitle = modal.querySelector("#modal-title");
+  const closeBtn = modal.querySelector(".close-btn");
+
+  function openModal(src, title) {
+    modal.style.display = "block";
+    modalImg.src = src;
+    modalTitle.textContent = title;
+  }
+
+  closeBtn.addEventListener("click", () => modal.style.display = "none");
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+
+  // ----- Filters -----
+  let currentFilter = "All";
   function renderEvents(filter = "All") {
     personalContainer.innerHTML = "";
     allContainer.innerHTML = "";
 
-    const filtered = filter === "All"
-      ? events
-      : events.filter(e => e.type === filter);
+    const filtered = filter === "All" ? events : events.filter(e => e.tag === filter);
 
     filtered.forEach(event => {
       allContainer.appendChild(createCard(event));
@@ -374,16 +407,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function loadSavedEvents() {
+  function renderSaved() {
     savedContainer.innerHTML = "";
-    getSavedEvents().forEach(event => {
-      savedContainer.appendChild(createCard(event));
-    });
+    savedEvents.forEach(event => savedContainer.appendChild(createCard(event)));
   }
 
   function updateUI(filter = "All") {
+    currentFilter = filter;
     renderEvents(filter);
-    loadSavedEvents();
+    renderSaved();
   }
 
   document.querySelectorAll(".filter-btn").forEach(btn => {
@@ -397,6 +429,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateUI();
 });
 
+// ----- Navigation -----
 function navigateTo(page) {
   window.location.href = page;
 }
