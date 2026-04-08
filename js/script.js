@@ -260,56 +260,109 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedContainer = document.getElementById("saved-events");
 
   const interests = JSON.parse(localStorage.getItem("interests") || "[]");
-  const savedEvents = JSON.parse(localStorage.getItem("savedEvents") || "[]");
+  let savedEvents = JSON.parse(localStorage.getItem("savedEvents") || "[]");
 
   const events = [
-   {
-     title: "Bingo",
-     desc: "Talk about AI projects and meet others",
-     date: "April 10",
-     time: "6:00 PM",
-     org: "AI Club",
-     tag: "Games",
-     image: "images/bingo.jpg"
-   },
-   {
-     title: "Pitch Perfect",
-     desc: "Price Center Theater",
-     date: "April 16",
-     time: "8:00 PM",
-     org: "UCSD",
-     tag: "Movie",
-     image: "images/pitch.jpg"
-   },
-   {
-     title: "Company Tour Viasat",
-     desc: "Visit Viasat's Carlsbad office.",
-     date: "April 17",
-     time: "9:00 AM",
-     org: "AIAA",
-     tag: "Professional Development",
-     image: "images/viasat.png"
-   },
-   {
-     title: "Microadventure Hike",
-     desc: "Tritons Rise With Outlook",
-     date: "April 24",
-     time: "?",
-     org: "Recreation",
-     tag: "Nature",
-     image: "images/nature.png"
-   },
-   {
-     title: "Transfer Career Day",
-     desc: "Headshots, resume review, public speaking tips",
-     date: "April 30",
-     time: "2:00 PM",
-     org: "Triton Transfer",
-     tag: "Professional Development",
-     image: "images/transfer.jpg"
-   }
- ];
-
+    {
+      title: "Bingo",
+      desc: "Talk about AI projects and meet others",
+      location: "Shores Diner",
+      date: "April 10",
+      time: "6:00 PM",
+      org: "Student Center",
+      tag: ["Gaming"],
+      category: "Social",
+      image: "images/bingo.jpg"
+    },
+    {
+      title: "UC D.C. Session",
+      desc: "Transfers, interested in interning in Washington D.C.",
+      location: "RYA Community Room",
+      date: "April 15",
+      time: "3:00 PM",
+      org: "Triton Transfer",
+      tag: ["Academic", "Travel"],
+      category: "Professional Development",
+      image: "images/ucdc.jpg"
+    },
+    {
+      title: "Pitch Perfect",
+      desc: "Pitch Perfect 3",
+      location: "Price Center",
+      date: "April 16",
+      time: "6:30 PM",
+      org: "UCSD",
+      tag: ["Movie"],
+      category: "Social",
+      image: "images/pitch.jpg"
+    },
+    {
+      title: "Company Tour Viasat",
+      desc: "Visit Viasat's Carlsbad office.",
+      location: "Carlsbad",
+      date: "April 17",
+      time: "9:00 AM",
+      org: "AIAA",
+      tag: ["Professional Development", "Travel"],
+      category: "Career",
+      image: "images/viasat.png"
+    },
+    {
+      title: "Black Violin: Full Circle Tour",
+      desc: "Step into Black Violin’s Full Circle Tour, where GRAMMY-nominated duo Wil Baptiste and Kev Marcus redefine the possibilities of music by merging classical depth with hip-hop’s pulse.",
+      location: "Epstein Family Amphitheater",
+      date: "April 17",
+      time: "7:30 PM",
+      org: "ArtPower",
+      tag: ["Performing", "Culture", "Music"],
+      category: "Social",
+      image: "images/violin.png"
+    },
+    {
+      title: "Microadventure Hike",
+      desc: "Tritons Rise With Outlook",
+      location: "Torrey Pines",
+      date: "April 24",
+      time: "?",
+      org: "Recreation",
+      tag: ["Nature", "Fitness"], // multiple tags
+      category: "Social",
+      image: "images/nature.png"
+    },
+    {
+      title: "Transfer Career Day",
+      desc: "Headshots, resume review, public speaking tips",
+      location: "Price Center Ballroom",
+      date: "April 30",
+      time: "2:00 PM",
+      org: "Triton Transfer",
+      tag: ["Professional Development"],
+      category: "Career",
+      image: "images/transfer.jpg"
+    },
+    {
+      title: "SunGod Festival",
+      desc: "Sun God, an iconic festival with good music and delicious food, seems to be the perfect way to let loose in the middle of Spring Quarter.",
+      location: "RIMAC Field",
+      date: "May 2",
+      time: "12:00 PM",
+      org: "ASCE",
+      tag: ["Performing", "Music"],
+      category: "Social",
+      image: "images/sungod.png"
+    },
+    {
+      title: "Hello Keebs & Friends",
+      desc: "This event is open to the public! UCSD students can attend for free; all other attendees must pay a small entry fee which will go towards event funding.",
+      location: "UC San Diego, Student Services Center Multi Purpose Room and Matthew’s Quad",
+      date: "May 24",
+      time: "12:00 PM",
+      org: "Keyboard Club",
+      tag: ["Gaming", "Art"],
+      category: "Social",
+      image: "images/keebs.png"
+    }
+  ];
 
   // ----- Helpers -----
   function isSaved(event) {
@@ -327,42 +380,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUI(currentFilter);
   }
 
-  function createCard(event) {
-    const card = document.createElement("div");
-    card.className = "event-card";
-
-    // Card content
-    card.innerHTML = `
-      <h3>${event.title}</h3>
-      <p class="event-desc">${event.desc}</p>
-      <div class="event-details">
-        <p><strong>Date:</strong> ${event.date}</p>
-        <p><strong>Time:</strong> ${event.time}</p>
-        <p><strong>Org:</strong> ${event.org}</p>
-      </div>
-      <div class="event-footer">
-        <span class="event-tag">${event.tag}</span>
-        <button class="save-btn ${isSaved(event) ? "saved" : ""}">
-          ${isSaved(event) ? "Unsave" : "Save"}
-        </button>
-      </div>
-    `;
-
-    // Save button
-    const saveBtn = card.querySelector(".save-btn");
-    saveBtn.addEventListener("click", e => {
-      e.stopPropagation(); // prevent card click
-      toggleSave(event);
-    });
-
-    // Modal popup
-    card.addEventListener("click", () => {
-      openModal(event.image, event.title);
-    });
-
-    return card;
-  }
-
   // ----- Modal -----
   const modal = document.createElement("div");
   modal.className = "modal";
@@ -374,34 +391,82 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   `;
   document.body.appendChild(modal);
-
   const modalImg = modal.querySelector("#modal-image");
   const modalTitle = modal.querySelector("#modal-title");
   const closeBtn = modal.querySelector(".close-btn");
+  closeBtn.addEventListener("click", () => modal.style.display = "none");
+  modal.addEventListener("click", e => { if (e.target === modal) modal.style.display = "none"; });
 
-  function openModal(src, title) {
+  function showModal(src, title) {
     modal.style.display = "block";
     modalImg.src = src;
     modalTitle.textContent = title;
   }
 
-  closeBtn.addEventListener("click", () => modal.style.display = "none");
-  modal.addEventListener("click", e => {
-    if (e.target === modal) modal.style.display = "none";
-  });
+  // ----- Create Event Card -----
+  function createCard(event) {
+    const card = document.createElement("div");
+    card.className = "event-card";
 
-  // ----- Filters -----
+    card.innerHTML = `
+      <h3>${event.title}</h3>
+      <p class="event-desc">${event.desc}</p>
+      <div class="event-details">
+        <p><strong>Date:</strong> ${event.date}</p>
+        <p><strong>Time:</strong> ${event.time}</p>
+        <p><strong>Org:</strong> ${event.org}</p>
+        <p><strong>Location:</strong> ${event.location}</p>
+      </div>
+    `;
+
+    // Tags + Save button container
+    const footer = document.createElement("div");
+    footer.className = "event-footer";
+
+    // Multiple tags
+    event.tag.forEach(t => {
+      const tagEl = document.createElement("span");
+      tagEl.className = "event-tag";
+      tagEl.innerText = t;
+      footer.appendChild(tagEl);
+    });
+
+    // Save button
+    const saveBtn = document.createElement("button");
+    saveBtn.className = "save-btn";
+    saveBtn.innerText = isSaved(event) ? "Unsave" : "Save";
+    if (isSaved(event)) saveBtn.classList.add("saved");
+
+    saveBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleSave(event);
+      saveBtn.classList.toggle("saved");
+      saveBtn.innerText = saveBtn.classList.contains("saved") ? "Unsave" : "Save";
+    });
+
+    footer.appendChild(saveBtn);
+    card.appendChild(footer);
+
+    // Click card to show modal
+    card.addEventListener("click", () => showModal(event.image, event.title));
+
+    return card;
+  }
+
+  // ----- Render Functions -----
   let currentFilter = "All";
+
   function renderEvents(filter = "All") {
     personalContainer.innerHTML = "";
     allContainer.innerHTML = "";
 
-    const filtered = filter === "All" ? events : events.filter(e => e.tag === filter);
+    const filtered = filter === "All" 
+      ? events 
+      : events.filter(e => e.category === filter);
 
     filtered.forEach(event => {
       allContainer.appendChild(createCard(event));
-
-      if (interests.includes(event.tag)) {
+      if (interests.some(i => event.tag.includes(i))) {
         personalContainer.appendChild(createCard(event));
       }
     });
@@ -418,6 +483,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderSaved();
   }
 
+  // Filter buttons
   document.querySelectorAll(".filter-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelector(".filter-btn.active")?.classList.remove("active");
