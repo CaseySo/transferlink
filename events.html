@@ -2,17 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Campus Events</title>
+  <title>Events</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header><h1>Campus Events</h1></header>
-  <main class="container">
-    <div class="card">🎉 Club Fair - Oct 5</div>
-    <div class="card">📚 Study Group Meetup - Oct 6</div>
-    <div class="card">⚽ Sports Tryouts - Oct 7</div>
-    <button onclick="goToPage('home.html')">Back Home</button>
-  </main>
-  <script src="js/script.js"></script>
+
+<div class="home-container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Events</h1>
+    <p>Find events that match your interests and meet new people.</p>
+  </div>
+
+  <!-- Navigation -->
+  <div class="top-nav">
+    <button class="nav-pill" onclick="navigateTo('home.html')">Home</button>
+    <button class="nav-pill selected">Events</button>
+    <button class="nav-pill" onclick="navigateTo('community.html')">Community</button>
+    <button class="nav-pill" onclick="navigateTo('courses.html')">Courses</button>
+    <button class="nav-pill" onclick="navigateTo('guide.html')">Guide</button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="All">All</button>
+    <button class="filter-btn" data-filter="Social">Social</button>
+    <button class="filter-btn" data-filter="Academic">Academic</button>
+    <button class="filter-btn" data-filter="Career">Career</button>
+  </div>
+
+  <!-- Personalized -->
+  <h2>For You</h2>
+  <div id="personal-events" class="card-container"></div>
+
+  <!-- Saved -->
+  <h2>Saved Events</h2>
+  <div id="saved-events" class="card-container"></div>
+
+  <!-- All -->
+  <h2>All Events</h2>
+  <div id="all-events" class="card-container"></div>
+
+  <!-- Tips -->
+  <h2>Where to Find More</h2>
+  <div class="tips-box">
+    <ul>
+      <li>Follow UCSD orgs on Instagram</li>
+      <li>Check campus event boards</li>
+      <li>Visit resource centers</li>
+    </ul>
+  </div>
+
+</div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
