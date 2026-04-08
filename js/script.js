@@ -250,3 +250,153 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+/* ==============================
+   Events Page JS
+   ============================== */
+document.addEventListener("DOMContentLoaded", () => {
+
+  const interests = JSON.parse(localStorage.getItem("interests") || "[]");
+
+  const events = [
+    {
+      title: "AI Club Meetup",
+      desc: "Talk about AI projects and meet others",
+      date: "April 10",
+      time: "6:00 PM",
+      org: "AI Club",
+      tag: "AI",
+      type: "Academic"
+    },
+    {
+      title: "Basketball Night",
+      desc: "Pickup games at RIMAC",
+      date: "April 12",
+      time: "8:00 PM",
+      org: "Rec Center",
+      tag: "Sports",
+      type: "Social"
+    },
+    {
+      title: "Art Workshop",
+      desc: "Relax and paint",
+      date: "April 15",
+      time: "5:00 PM",
+      org: "Visual Arts Club",
+      tag: "Art",
+      type: "Social"
+    },
+    {
+      title: "Hackathon",
+      desc: "Build projects & win prizes",
+      date: "April 20",
+      time: "10:00 AM",
+      org: "ACM",
+      tag: "Coding",
+      type: "Career"
+    }
+  ];
+
+  const personalContainer = document.getElementById("personal-events");
+  const allContainer = document.getElementById("all-events");
+  const savedContainer = document.getElementById("saved-events");
+
+  function getSavedEvents() {
+    return JSON.parse(localStorage.getItem("savedEvents") || "[]");
+  }
+
+  function checkIfSaved(event) {
+    return getSavedEvents().some(e => e.title === event.title);
+  }
+
+  function toggleSave(event) {
+    let saved = getSavedEvents();
+    const exists = checkIfSaved(event);
+
+    if (exists) {
+      saved = saved.filter(e => e.title !== event.title);
+    } else {
+      saved.push(event);
+    }
+
+    localStorage.setItem("savedEvents", JSON.stringify(saved));
+  }
+
+  function createCard(event) {
+    const card = document.createElement("div");
+    card.className = "card event-card";
+
+    const isSaved = checkIfSaved(event);
+
+    card.innerHTML = `
+      <h3>${event.title}</h3>
+      <p class="event-desc">${event.desc}</p>
+
+      <div class="event-details">
+        <p>📅 ${event.date}</p>
+        <p>⏰ ${event.time}</p>
+        <p>🏫 ${event.org}</p>
+      </div>
+
+      <div class="event-footer">
+        <span class="event-tag">${event.tag}</span>
+        <span class="event-type">${event.type}</span>
+      </div>
+
+      <button class="save-btn ${isSaved ? "saved" : ""}">
+        ${isSaved ? "★ Saved" : "☆ Save"}
+      </button>
+    `;
+
+    const btn = card.querySelector(".save-btn");
+    btn.addEventListener("click", () => {
+      toggleSave(event);
+      updateUI();
+    });
+
+    return card;
+  }
+
+  function renderEvents(filter = "All") {
+    personalContainer.innerHTML = "";
+    allContainer.innerHTML = "";
+
+    const filtered = filter === "All"
+      ? events
+      : events.filter(e => e.type === filter);
+
+    filtered.forEach(event => {
+      allContainer.appendChild(createCard(event));
+
+      if (interests.includes(event.tag)) {
+        personalContainer.appendChild(createCard(event));
+      }
+    });
+  }
+
+  function loadSavedEvents() {
+    savedContainer.innerHTML = "";
+    getSavedEvents().forEach(event => {
+      savedContainer.appendChild(createCard(event));
+    });
+  }
+
+  function updateUI(filter = "All") {
+    renderEvents(filter);
+    loadSavedEvents();
+  }
+
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelector(".filter-btn.active")?.classList.remove("active");
+      btn.classList.add("active");
+      updateUI(btn.dataset.filter);
+    });
+  });
+
+  updateUI();
+});
+
+function navigateTo(page) {
+  window.location.href = page;
+}
