@@ -179,19 +179,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 /* ==============================
-   Courses Page
+   Courses Page JS
    ============================== */
-
-  document.addEventListener("DOMContentLoaded", () => {
-  const name = localStorage.getItem("name") || "Student";
+document.addEventListener("DOMContentLoaded", () => {
   const major = localStorage.getItem("major") || "";
   const college = localStorage.getItem("college") || "";
-"Computer Science (B.S.)","Data Science (B.S.)",
-  "Biology (B.S.)", "Cognitive Science (B.S.)","Psychology (B.S.)","Economics (B.A.)",
-  "Mathematics (B.S.)","Mechanical Engineering (B.S.)", "Visual Arts (B.A.)","Public Health (B.S.)"
-  // Example mapping of majors → requirement links
+
   const majorLinks = {
-    "Computer Science (B.S.)": "https://catalog.ucsd.edu/curric/CSE-ug.html?_gl=1*qdu0gw*_gcl_au*NjYyODM3OTAxLjE3NzU2MDExOTk.*_ga*MjQ1Njc3NzI1LjE3NTg2NTk4MzA.*_ga_PWJGRGMV0T*czE3NzU2MDM2NDIkbzMkZzAkdDE3NzU2MDM2NDIkajYwJGwwJGgw",
+    "Computer Science (B.S.)": "https://catalog.ucsd.edu/curric/CSE-ug.html",
     "Data Science (B.S.)": "https://catalog.ucsd.edu/curric/DSC.html",
     "Biology (B.S.)": "https://biology.ucsd.edu/education/undergrad/major-minor-programs/majors/requirements/index.html",
     "Psychology (B.S.)": "https://catalog.ucsd.edu/curric/PSYC-ug.html",
@@ -211,24 +206,47 @@ document.addEventListener("DOMContentLoaded", () => {
     "Warren": "https://warren.ucsd.edu/academics/general-education/index.html",
     "Sixth": "https://sixth.ucsd.edu/academics/requirements/transfer-requirements.html",
     "Seventh": "https://seventh.ucsd.edu/academics/degree-requirements/degree-requirements-transfers.html",
-    "Eighth": "https://eighth.ucsd.edu/academics/degree-requirements/transfer.html",
+    "Eighth": "https://eighth.ucsd.edu/academics/degree-requirements/transfer.html"
   };
 
-  // Update major box
-  const majorLinkEl = document.getElementById("major-link");
-  majorLinkEl.href = majorLinks[major] || "#";
-  document.getElementById("major-text").innerText = major || "Your major not set";
+  // ===== Update major and college boxes dynamically =====
+  const majorText = document.getElementById("major-text");
+  const majorLink = document.getElementById("major-link");
+  majorText.innerText = major || "Your major not set";
+  majorLink.href = majorLinks[major] || "#";
 
-  // Update college box
-  const geLinkEl = document.getElementById("ge-link");
-  geLinkEl.href = collegeLinks[college] || "#";
-  document.getElementById("ge-text").innerText = college || "Your college not set";
-});
+  const geText = document.getElementById("ge-text");
+  const geLink = document.getElementById("ge-link");
+  geText.innerText = college || "Your college not set";
+  geLink.href = collegeLinks[college] || "#";
 
-x// Highlight current page pill
-document.addEventListener("DOMContentLoaded", () => {
-  const page = window.location.pathname.split("/").pop(); // e.g., 'courses.html'
-  const pillId = page.split(".")[0] + "-pill"; // 'courses-pill'
-  const pill = document.getElementById(pillId);
-  if (pill) pill.classList.add("selected");
+  // ===== Accordion functionality =====
+  const accordions = document.querySelectorAll(".accordion");
+
+  accordions.forEach(button => {
+    const panel = button.nextElementSibling;
+
+    button.addEventListener("click", () => {
+      const isOpen = panel.classList.contains("open");
+
+      if (isOpen) {
+        // Collapse panel
+        panel.style.maxHeight = null;
+        panel.classList.remove("open");
+        button.classList.remove("active");
+      } else {
+        // Expand panel fully
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.classList.add("open");
+        button.classList.add("active");
+
+        // Remove maxHeight after transition to allow dynamic height
+        setTimeout(() => {
+          if (panel.classList.contains("open")) {
+            panel.style.maxHeight = "none";
+          }
+        }, 300); // should match your CSS transition
+      }
+    });
+  });
 });

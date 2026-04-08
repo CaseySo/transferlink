@@ -375,3 +375,64 @@ h2 {
   background-color: #004494; /* darker blue on hover */
   color: #fff;
 }
+.req-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+.accordion-box {
+  flex: 1;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+/* Container to hold the three accordions side by side */
+.accordion-container {
+  display: flex;
+  gap: 20px;            /* spacing between accordions */
+  justify-content: center;
+  flex-wrap: wrap;      /* wraps on smaller screens */
+  margin: 20px 0;
+}
+
+/* Each accordion box */
+.accordion-box {
+  flex: 1 1 300px;       /* min width 300px, grow if space */
+  max-width: 350px;      /* optional max width */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Accordion button */
+.accordion {
+  background-color: #0057b8;
+  color: white;
+  cursor: pointer;
+  padding: 12px 20px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.accordion.active {
+  background-color: #ffc72c; /* UCSD yellow */
+  color: #0057b8;
+}
+
+/* Panel content */
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  background-color: #eef3f7;
+  padding: 0 20px; /* start with zero vertical padding */
+}
+.panel.open {
+  padding: 15px 20px; /* add vertical padding when open */
+}
