@@ -15,7 +15,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sections = [
     {
-      title: "RESOURCES",
+      title: "STUDY SPOTS",
+      items: [
+        { name: "Geisel Library", 
+            image: "https://via.placeholder.com/300x200", 
+            info: "Quiet and group study.", 
+            rating: 5,
+            link: "https://library.ucsd.edu/"
+         },
+        { name: "Revelle Study Hall", 
+            image: "https://via.placeholder.com/300x200", 
+            info: "Low distraction.", 
+            rating: 4,
+            link: "https://students.ucsd.edu/campus-services/academic-support/study-halls/revelle.html"
+        },
+        { name: "Campus Cafe", 
+            image: "https://via.placeholder.com/300x200", 
+            info: "Coffee + studying.", 
+            rating: 3,
+            link: "https://students.ucsd.edu/campus-services/academic-support/study-halls/revelle.html"
+         }
+      ]
+    },
+    {
+      title: "RESEARCH + JOB SEARCH HELP",
+      items: [
+        { name: "Career Center", 
+            image: "images/career.png", 
+            info: "No matter where you are in your search, resources are available to help. Tell us a little about yourself and we’ll point you in the right direction." ,
+            link: "https://career.ucsd.edu/"
+        },
+        { name: "Handshake", 
+            image: "images/handshake.png", 
+            info: "Find on-campus jobs, research labs, etc." ,
+            link: "https://ucsd.joinhandshake.com/explore"
+        },
+        { name: "Networking", 
+            image: "images/connect.jpg", 
+            info: "Tritons Connect is your UC San Diego resource, connecting alumni, students, faculty and staff to the greater campus community. Engage with mentors, join specialized interest groups, access a robust Triton directory and so much more." ,
+            link: "https://tritonsconnect.com/"
+        }
+      ]
+    },
+    {
+      title: "RECREATION ON CAMPUS",
+      items: [
+        { name: "Library", 
+            image: "https://via.placeholder.com/300x200", 
+            info: "Books, study rooms, research help.",
+            link: "https://library.ucsd.edu/"
+         },
+        { name: "Student Services", 
+            image: "https://via.placeholder.com/300x200", info: "Advising and support.",
+            link: "https://students.ucsd.edu/"
+        },
+        { name: "Tech Support",
+            image: "https://via.placeholder.com/300x200",
+            info: "Help with WiFi and devices.",
+            link: "https://blink.ucsd.edu/techsupport/"
+        }
+      ]
+    },
+    {
+      title: "FUN THINGS TO DO IN SAN DIEGO",
+      items: [
+        { name: "Library", 
+            image: "https://via.placeholder.com/300x200", 
+            info: "Books, study rooms, research help.",
+            link: "https://library.ucsd.edu/"
+         },
+        { name: "Student Services", 
+            image: "https://via.placeholder.com/300x200", info: "Advising and support.",
+            link: "https://students.ucsd.edu/"
+        },
+        { name: "Tech Support",
+            image: "https://via.placeholder.com/300x200",
+            info: "Help with WiFi and devices.",
+            link: "https://blink.ucsd.edu/techsupport/"
+        }
+      ]
+    },
+    {
+      title: "HEALTH AND WELLNESS",
       items: [
         { name: "Library", image: "https://via.placeholder.com/300x200", info: "Books, study rooms, research help." },
         { name: "Student Services", image: "https://via.placeholder.com/300x200", info: "Advising and support." },
@@ -23,32 +104,41 @@ document.addEventListener("DOMContentLoaded", () => {
       ]
     },
     {
-      title: "STUDY SPOTS",
+      title: "TRANSPORTATION AND NAVIGATION",
       items: [
-        { name: "Geisel Library", image: "https://via.placeholder.com/300x200", info: "Quiet and group study.", rating: 5 },
-        { name: "Revelle Study Hall", image: "https://via.placeholder.com/300x200", info: "Low distraction.", rating: 4 },
-        { name: "Campus Cafe", image: "https://via.placeholder.com/300x200", info: "Coffee + studying.", rating: 3 }
-      ]
-    },
-    {
-      title: "RESEARCH + JOB SEARCH HELP",
-      items: [
-        { name: "Career Center", image: "https://via.placeholder.com/300x200", info: "Internships and resumes." },
-        { name: "Networking", image: "https://via.placeholder.com/300x200", info: "Meet recruiters." },
-        { name: "Research Labs", image: "https://via.placeholder.com/300x200", info: "Join faculty research." }
-      ]
-    },
-    {
-      title: "TRANSPORTATION",
-      items: [
-        { name: "Campus Shuttle", 
-            image: "https://via.placeholder.com/300x200", 
-            info: "Get around campus for free" ,
-            link: "https://shuttle.example.com"
+        { name: "UCSD Map", 
+            image: "images/ucsdmap.webp", 
+            info: "Plan your route around campus." ,
+            link: "https://maps.ucsd.edu/map/default.htm"
         },
-        { name: "Bike Routes", image: "https://via.placeholder.com/300x200", info: "Safe biking paths." },
-        { name: "Parking", image: "https://via.placeholder.com/300x200", info: "Permits and zones." }
-      ]
+        { name: "Campus Shuttle", 
+            image: "images/shuttle.jpg", 
+            info: "Get around campus for free, download the Transit App" ,
+            link: "https://transportation.ucsd.edu/campus/shuttles/index.html"
+        },
+        { name: "MTS Buses and Trolley", 
+            image: "images/mts.jpg", 
+            info: "Take public transit to get around San Diego. Don't forget to get the Pronto App! Free for student, included in tuition.",
+            link: "https://transportation.ucsd.edu/commute/transit/index.html"
+        },
+        { name: "Need to get the SAN Airport?", 
+            image: "images/flyer.jpeg", 
+            info: "Take the blue line trolley to San Ysidro till Old Town and transfer to the Free San Diego Flyer, takes about 1 hour",
+            link: "https://students.ucsd.edu/campus-services/parking-transportation/holidays.html"
+        },
+        {
+            name: "Taking AmTrak?",
+            image: "images/amtrak.webp",
+            info: "Take the blue line trolley to San Ysidro till Old Town and transfer to AmTrak",
+            link: "https://students.ucsd.edu/campus-services/parking-transportation/holidays.html"
+        },
+        {
+            name: "Parking",
+            image: "images/parking.jpg",
+            info: "Permits and zones.",
+            link: "https://transportation.ucsd.edu/commute/permits/index.html"
+        }
+          ]
     }
   ];
 
