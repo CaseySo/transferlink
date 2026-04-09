@@ -510,3 +510,109 @@ document.addEventListener("DOMContentLoaded", () => {
 function navigateTo(page) {
   window.location.href = page;
 }
+
+/* ==============================
+   Community Page JS
+   ============================== */
+document.addEventListener("DOMContentLoaded", () => {
+
+  const userMajor = localStorage.getItem("major") || "";
+  const userInterests = JSON.parse(localStorage.getItem("interests") || "[]");
+  const userCourses = JSON.parse(localStorage.getItem("courses") || "[]");
+
+  // ===== People Data =====
+  const people = [
+    { name: "Alice", major: "Computer Science", interests: ["AI","Games"], image: "images/person1.jpg", email: "alice@example.com", instagram: "@aliceAI" },
+    { name: "Bob", major: "Biology", interests: ["Nature","Fitness"], image: "images/person2.jpg", email: "bob@example.com", instagram: "@bobBio" },
+    { name: "Charlie", major: "Computer Science", interests: ["Coding","AI"], image: "images/person3.jpg", email: "charlie@example.com", instagram: "@charlieCS" },
+    { name: "Dana", major: "Psychology", interests: ["Music","Art"], image: "images/person4.jpg", email: "dana@example.com", instagram: "@danaPsy" }
+  ];
+
+  // ===== Clubs Data =====
+  const clubs = [
+    { name: "AI Club", description: "Explore AI projects", interests: ["AI","Coding"], image: "images/club1.jpg", email: "ai@example.com", instagram: "@AIclubUCSD" },
+    { name: "Bio Society", description: "Biology and research", interests: ["Biology","Nature"], image: "images/club2.jpg", email: "bio@example.com", instagram: "@BioSociety" },
+    { name: "Art Club", description: "Art workshops and exhibits", interests: ["Art","Music"], image: "images/club3.jpg", email: "art@example.com", instagram: "@ArtClubUCSD" }
+  ];
+
+  // ===== Study Groups =====
+  const groups = [
+    { name: "CS101 Study Group", course: "CS101", description: "Weekly coding practice", image: "images/group1.jpg", contact: "cs101group@example.com" },
+    { name: "Bio101 Study Group", course: "BIO101", description: "Lab prep and discussion", image: "images/group2.jpg", contact: "bio101group@example.com" }
+  ];
+
+  // ===== Modal Elements =====
+  const modal = document.getElementById("modal");
+  const modalImg = modal.querySelector("#modal-image");
+  const modalTitle = modal.querySelector("#modal-title");
+  const modalDesc = modal.querySelector("#modal-desc");
+  const modalContact = modal.querySelector("#modal-contact");
+  const joinBtn = modal.querySelector("#join-btn");
+  const closeBtn = modal.querySelector(".close-btn");
+
+  closeBtn.addEventListener("click", ()=>modal.style.display="none");
+  modal.addEventListener("click", e=>{ if(e.target===modal) modal.style.display="none"; });
+
+  function openModal(src, title, desc="", contact="", showJoin=false) {
+    modal.style.display="flex";
+    modalImg.src = src;
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+    modalContact.innerHTML = contact;
+    joinBtn.style.display = showJoin ? "inline-block" : "none";
+  }
+
+  // ===== Render People Carousel =====
+  const peopleContainer = document.getElementById("people-carousel");
+  const filteredPeople = people.filter(p =>
+    p.major === userMajor || p.interests.some(i=>userInterests.includes(i))
+  );
+
+  filteredPeople.forEach(p=>{
+    const card = document.createElement("div");
+    card.className = "carousel-card";
+    card.innerHTML = `<img src="${p.image}" alt="${p.name}"><h4>${p.name}</h4><p>${p.major}</p>`;
+
+    card.addEventListener("click",()=>{
+      const desc = "Shared interests: " + p.interests.join(", ");
+      const contact = `Email: <a href="mailto:${p.email}">${p.email}</a> | Instagram: <a href="https://instagram.com/${p.instagram.substring(1)}" target="_blank">${p.instagram}</a>`;
+      openModal(p.image, p.name, desc, contact);
+    });
+
+    peopleContainer.appendChild(card);
+  });
+
+  // ===== Render Clubs =====
+  const clubsContainer = document.getElementById("clubs-container");
+  const filteredClubs = clubs.filter(c => c.interests.some(i => userInterests.includes(i)));
+
+  filteredClubs.forEach(c=>{
+    const card = document.createElement("div");
+    card.className="card";
+    card.innerHTML = `<img src="${c.image}" alt="${c.name}"><h4>${c.name}</h4><p>${c.description}</p>`;
+
+    card.addEventListener("click",()=>{
+      const contact = `Email: <a href="mailto:${c.email}">${c.email}</a> | Instagram: <a href="https://instagram.com/${c.instagram.substring(1)}" target="_blank">${c.instagram}</a>`;
+      openModal(c.image, c.name, c.description, contact);
+    });
+
+    clubsContainer.appendChild(card);
+  });
+
+  // ===== Render Study Groups =====
+  const groupsContainer = document.getElementById("groups-container");
+  const filteredGroups = groups.filter(g => userCourses.includes(g.course));
+
+  filteredGroups.forEach(g=>{
+    const card = document.createElement("div");
+    card.className="card";
+    card.innerHTML = `<img src="${g.image}" alt="${g.name}"><h4>${g.name}</h4><p>${g.description}</p>`;
+
+    card.addEventListener("click",()=>{
+      openModal(g.image, g.name, g.description, `Contact: <a href="mailto:${g.contact}">${g.contact}</a>`, true);
+    });
+
+    groupsContainer.appendChild(card);
+  });
+
+});

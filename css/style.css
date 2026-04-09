@@ -284,6 +284,10 @@ body {
   color: #182B49;
   transform: translateY(-2px);
 }
+.nav-pill.selected {
+  background: #0072ce;
+  color: white;
+}
 
 /* ==============================
    Sections & Cards
@@ -332,47 +336,60 @@ h2 {
    Course Page
    ============================== */
 
-  /* Container for the two boxes */
+/* Container for cards */
 .course-boxes {
-  display: flex;             /* side by side */
-  gap: 20px;                 /* space between them */
-  justify-content: center;   /* center them horizontally */
-  margin: 20px 0;            /* spacing from other content */
-  flex-wrap: wrap;           /* wrap on small screens */
+  display: flex;
+  justify-content: center;   /* center the cards horizontally */
+  gap: 20px;                 /* space between cards */
+  flex-wrap: wrap;           /* wrap if screen is too small */
+  margin: 30px 0;            /* spacing from hero / other content */
 }
 
-/* Style individual boxes like home cards */
-.course-boxes .card {
-  flex: 1 1 300px;           /* responsive: min 300px width, grow if space */
-  max-width: 400px;          /* optional max width */
+/* Individual course cards */
+.course-card {
+  flex: 1 1 280px;           /* minimum width 280px, grows if space */
+  max-width: 320px;          /* prevent overly wide cards */
+  background-color: #fff;
+  border-radius: 16px;
   padding: 20px;
-  background-color: #f9f9f9; /* neutral background */
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.course-boxes .card:hover {
+.course-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-/* Make links inside the cards stand out */
-.course-boxes .card a {
+.course-card h3 {
+  font-size: 1.3rem;
+  color: #0057b8;  /* UCSD Blue */
+  margin-bottom: 10px;
+}
+
+.course-card p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.course-card a {
   display: inline-block;
-  margin-top: 12px;
   padding: 8px 16px;
-  background-color: #0057b8; /* UCSD blue */
-  color: #ffb81c;            /* UCSD yellow */
+  background-color: #0057b8;
+  color: #ffc72c;
+  border-radius: 8px;
+  font-weight: 600;
   text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background-color 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
-.course-boxes .card a:hover {
-  background-color: #004494; /* darker blue on hover */
+.course-card a:hover {
+  background-color: #004494;
   color: #fff;
 }
 .req-container {
@@ -438,11 +455,13 @@ h2 {
 }
 
 /* ==============================
-   Events Page
+   Events Page & Cards
    ============================== */
-/* Filter bar */
+
+/* ---------- Filter Bar ---------- */
 .filter-bar {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin: 20px 0;
 }
@@ -453,144 +472,79 @@ h2 {
   border: none;
   background: #e0e0e0;
   cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
 .filter-btn.active {
   background: #0057b8;
   color: #ffb81c;
 }
+/* ==============================
+   Event / Card Styles
+   ============================== */
 
-/* Event cards */
-.event-card {
-  padding: 18px;
-  background: white;
-  border-radius: 12px;
-  text-align: left;
-  transition: 0.2s;
+/* ---------- Card Container ---------- */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
-.event-card:hover {
+/* ---------- Individual Card ---------- */
+.card, .event-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* footer sticks to bottom */
+  min-height: 300px;
+  font-family: 'Arial', sans-serif;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover, .event-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
-.event-desc {
-  font-size: 14px;
-  color: #555;
+/* ---------- Card Title & Description ---------- */
+.card h3, .event-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #000000;
 }
 
-.event-details p {
-  margin: 4px 0;
-  font-size: 13px;
+.card p, .event-card p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 12px;
 }
 
+/* ---------- Event Footer ---------- */
 .event-footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-top: 1px solid #f0f0f0;
+  margin-top: auto; /* sticks footer to bottom of card */
 }
 
-.event-tag {
-  background: #ffb81c;
-  color: #0057b8;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-}
-
-.event-type {
-  background: #e0e0e0;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-}
-
-/* Save button */
-.save-btn {
-  margin-top: 10px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: none;
-  background: #0057b8;
-  color: #ffb81c;
-  cursor: pointer;
-}
-
-.save-btn.saved {
-  background: #ffb81c;
-  color: #0057b8;
-}
-
-/* Tips */
-.tips-box {
-  background: #f4f6f8;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-.tips-box li {
-  margin-bottom: 8px;
-}
-
-.modal {
-  display: none; /* hidden by default */
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  overflow: auto;
-}
-
-.modal-content {
-  background: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  max-width: 600px;
-  border-radius: 12px;
-  position: relative;
-  text-align: center;
-}
-
-.modal-content img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-top: 15px;
-  transition: transform 0.2s;
-}
-
-.modal-content img:hover {
-  transform: scale(1.05);
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* ==============================
-   Event Card Footer
-   ============================== */
-.event-footer {
-  display: flex;
-  flex-wrap: wrap;          /* allows tags to wrap on small screens */
-  justify-content: space-between; /* pushes save button to right */
-  align-items: center;      /* vertical alignment */
-  margin-top: 12px;
-  gap: 8px;                 /* spacing between tags and button */
-}
-
-/* Tags */
+/* ---------- Tags ---------- */
 .event-tag, .event-type {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
@@ -599,25 +553,24 @@ h2 {
 }
 
 .event-tag {
-  background-color: #0057b8;
-  color: #ffc72c;
+  background-color: #e0e0e0; /* grey background */
+  color: #000; /* black text */
 }
 
 .event-type {
-  background-color: #f0f0f0;
-  color: #555;
+  background-color: #e0e0e0;
+  color: #000;
 }
 
-/* Save button */
+/* ---------- Save Button ---------- */
 .save-btn {
-  flex-shrink: 0;           /* ensures it doesn't shrink */
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
   border: none;
   background-color: #0057b8;
   color: #ffc72c;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
   transition: background 0.3s, color 0.3s;
 }
 
@@ -626,27 +579,14 @@ h2 {
   color: #0057b8;
 }
 
-.tag-container {
-  display: flex;
-  flex-wrap: wrap;        /* tags wrap if they overflow */
-  gap: 6px;               /* space between tags */
+.save-btn:hover {
+  opacity: 0.9;
 }
 
-.event-tag, .event-type {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.event-footer {
-  display: flex;
-  justify-content: space-between; /* tags left, save button right */
-  align-items: center;
-  margin-top: 12px;
-  gap: 8px;
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .card-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
 }

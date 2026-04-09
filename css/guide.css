@@ -1,6 +1,10 @@
 /* ==============================
    Navigation Pills
    ============================== */
+.nav-pill.selected {
+  background: #0072ce;
+  color: white;
+}
 .top-nav {
   display: flex;
   justify-content: center;
@@ -172,6 +176,28 @@ h2 {
 }
 
 /* ==============================
+   Carousel Layout
+   ============================== */
+.carousel-wrapper {
+  position: relative;
+  margin: 20px auto;
+  max-width: 1000px; /* keep it centered like hero */
+}
+
+.flip-cards-container {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  padding: 20px 60px; /* add left/right padding so cards don't touch arrows */
+  scroll-behavior: smooth;
+  justify-content: center; /* center cards */
+}
+
+.flip-cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==============================
    Arrows
    ============================== */
 .arrow {
@@ -185,7 +211,14 @@ h2 {
   width: 35px;
   height: 35px;
   cursor: pointer;
+  z-index: 10; /* always on top */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-.arrow-left { left: 5px; }
-.arrow-right { right: 5px; }
+.arrow-left { left: 10px; }
+.arrow-right { right: 10px; }
+
+.arrow:hover {
+  background: #0057b8;
+  transform: translateY(-50%) scale(1.1);
+}

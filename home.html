@@ -2,37 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>TransferLink Home</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Home</title>
+  <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
 
-  <div class="home-container">
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <h1 id="greeting">Welcome!</h1>
+  <p id="profile-info">Here's what’s new for you this week</p>
+</section>
 
-    <!-- ===== Hero / Greeting ===== -->
-    <div class="hero">
-      <h1 id="greeting">Welcome!</h1>
-      <p id="profile-info"></p> <!-- This will show major, college, interests -->
-      <p id="subtext">Here's what's happening on campus today.</p>
-    </div>
+<!-- ===== Navigation ===== -->
+<div class="top-nav">
+  <button class="nav-pill selected" onclick="navigateTo('home.html')">Home</button>
+  <button class="nav-pill" onclick="navigateTo('events.html')">Events</button>
+  <button class="nav-pill" onclick="navigateTo('community.html')">Community</button>
+  <button class="nav-pill" onclick="navigateTo('courses.html')">Courses</button>
+  <button class="nav-pill" onclick="navigateTo('guide.html')">Guide</button>
+</div>
 
-    <!-- ===== Top Navigation Pills ===== -->
-    <div class="top-nav">
-    <button class="nav-pill" onclick="navigateTo('home.html')" id="home-pill">Home</button>
-    <button class="nav-pill" onclick="navigateTo('events.html')" id="events-pill">Events</button>
-    <button class="nav-pill" onclick="navigateTo('community.html')" id="community-pill">Community</button>
-    <button class="nav-pill selected" onclick="navigateTo('courses.html')" id="courses-pill">Courses</button>
-    <button class="nav-pill" onclick="navigateTo('guide.html')" id="guide-pill">Guide</button>
-    </div>
-
-    <!-- ===== Recommended Section ===== -->
-    <h2>Recommended for you</h2>
-    <div id="recommendations" class="card-container">
-      <!-- dynamically filled via JS -->
-    </div>
-
+<!-- ===== Featured Newsletter ===== -->
+<section class="newsletter-section">
+  <h2>📬 This Week’s Newsletter</h2>
+  <div class="newsletter-card">
+    <h3 id="newsletter-title">UCSD Weekly Highlights</h3>
+    <p id="newsletter-body">Your weekly roundup of campus news, events, and tips for success!</p>
   </div>
+</section>
 
-  <script src="js/script.js"></script>
+<!-- ===== Upcoming Highlights ===== -->
+<section class="newsletter-section">
+  <h2>🔥 Upcoming Highlights</h2>
+  <div class="card-container" id="highlights">
+    <!-- Cards populated by JS -->
+  </div>
+</section>
+
+<!-- ===== Tips Section ===== -->
+<section class="newsletter-section">
+  <h2>📚 Tips for You</h2>
+  <div class="card-container" id="tips">
+    <!-- Cards populated by JS -->
+  </div>
+</section>
+
+<script src="js/home.js"></script>
 </body>
 </html>
