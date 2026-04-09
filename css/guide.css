@@ -1,0 +1,191 @@
+/* ==============================
+   Navigation Pills
+   ============================== */
+.top-nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.nav-pill {
+  background-color: #182B49; /* UCSD Blue */
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.nav-pill:hover {
+  background-color: #FFC72C; /* Gold pop on hover */
+  color: #182B49;
+  transform: translateY(-2px);
+}
+
+/* ==============================
+   Hero Section
+   ============================== */
+.hero {
+  text-align: center;
+  background-color: #ffffff; /* neutral hero */
+  color: #182B49; 
+  padding: 60px 20px;
+  border-radius: 16px;
+  margin: 20px auto 40px auto;
+  max-width: 1000px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* ==============================
+   General Styles
+   ============================== */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background-color: #f7f8fc;
+  color: #333;
+}
+
+.section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #222;
+}
+
+
+/* ==============================
+   Section Titles
+   ============================== */
+.guide-section {
+  margin-bottom: 50px;
+}
+
+.guide-section h2 {
+  margin-left: 20px;
+}
+
+/* ==============================
+   Carousel Layout
+   ============================== */
+.carousel-wrapper {
+  position: relative;
+}
+
+.flip-cards-container {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+.flip-cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==============================
+   Flip Cards (CONSISTENT SIZE)
+   ============================== */
+.flip-card {
+  flex: 0 0 auto;
+  width: 230px;
+  height: 280px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* FRONT */
+.flip-card-front {
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.flip-card-front img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.flip-card-front h4 {
+  margin: 5px;
+  text-align: center;
+}
+
+/* ⭐ Stars */
+.stars {
+  text-align: center;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+/* BACK */
+.flip-card-back {
+  background: #0072ce;
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  text-align: center;
+}
+
+/* ==============================
+   Arrows
+   ============================== */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #0072ce;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.arrow-left { left: 5px; }
+.arrow-right { right: 5px; }
