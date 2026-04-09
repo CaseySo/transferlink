@@ -280,3 +280,36 @@ body {
 .close-btn:hover {
   color: #000;
 }
+
+/* ===== Tips Cards ===== */
+.tips-card {
+  background-color: #f5f5f5; /* light grey */
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* top-align text */
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 150px; /* ensures all cards same minimum size */
+  max-height: 180px; /* prevents extremely tall cards */
+  overflow: hidden; /* cuts off excessive text if needed */
+}
+
+.tips-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.tips-card p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+  flex-grow: 1; /* makes sure paragraph fills space evenly */
+}
+
+.tips-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}

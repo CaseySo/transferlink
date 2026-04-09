@@ -244,7 +244,7 @@ const tips = [
 const tipsContainer = document.getElementById("tips");
 tips.forEach(tip => {
   const card = document.createElement("div");
-  card.className = "card";
+  card.className = "tips-card"; // new class
   card.innerHTML = `
     <h3>${tip.title}</h3>
     <p>${tip.body}</p>
