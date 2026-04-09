@@ -250,7 +250,7 @@ displayClubs.forEach(c => {
     else if (card.dataset.type === "group") {
       modalDesc.innerHTML = `
         Study Group<br><br>
-        📸 ${card.dataset.instagram}
+        📧 ${card.dataset.email}
       `;
     }
   });
