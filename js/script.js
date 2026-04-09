@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const events = [
     {
       title: "Bingo",
-      desc: "Talk about AI projects and meet others",
+      desc: "Play Bingo",
       location: "Shores Diner",
       date: "April 10",
       time: "6:00 PM",
@@ -409,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
   modal.addEventListener("click", e => { if (e.target === modal) modal.style.display = "none"; });
 
   function showModal(src, title) {
-    modal.style.display = "block";
+    modal.style.display = "flex";
     modalImg.src = src;
     modalTitle.textContent = title;
   }

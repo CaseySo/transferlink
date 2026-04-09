@@ -88,41 +88,150 @@ const newsletter = {
   body: "Your weekly roundup of campus news, events, and tips for success!"
 };
 
-// Updated highlights with date info
-const highlights = [
-  { title: "Career Fair", body: "Meet top employers and explore internship & job opportunities.", tag: "Career", date: "2026-04-20" },
-  { title: "Sun God Festival", body: "Join the biggest campus festival of the year with music, food, and fun!", tag: "Festival", date: "2026-05-05" },
-  { title: "Viasat Info Session", body: "Learn about career opportunities at Viasat and network with recruiters.", tag: "Tech", date: "2026-05-15" },
-  { title: "Campus Tour", body: "Guided tour of UCSD’s iconic spots.", tag: "Campus", date: "2026-06-01" },   // ignored
-  { title: "Hackathon", body: "Show off your coding skills in our annual hackathon event.", tag: "Tech", date: "2026-06-10" } // ignored
-];
+/* ==============================
+   Home Page JS - Highlights like Events
+   ============================== */
+document.addEventListener("DOMContentLoaded", () => {
 
-// Filter only the three events we want
-const filteredHighlights = highlights.filter(event => 
-  ["Career Fair", "Sun God Festival", "Viasat Info Session"].includes(event.title)
-);
+  function navigateTo(page) {
+    window.location.href = page;
+  }
 
-// Sort by date ascending (closest first)
-filteredHighlights.sort((a,b) => new Date(a.date) - new Date(b.date));
+  const highlightsContainer = document.getElementById("highlights");
+  let savedEvents = JSON.parse(localStorage.getItem("savedEvents") || "[]");
 
-// ===== Populate Newsletter =====
-document.getElementById("newsletter-title").innerText = newsletter.title;
-document.getElementById("newsletter-body").innerText = newsletter.body;
+  const highlights = [
+    {
+      title: "Company Tour Viasat",
+      desc: "Visit Viasat's Carlsbad office.",
+      location: "Carlsbad",
+      date: "April 17",
+      time: "9:00 AM",
+      org: "AIAA",
+      tag: ["Professional Development", "Travel"],
+      category: "Career",
+      image: "images/viasat.png"
+    },
+    {
+      title: "Transfer Career Day",
+      desc: "Headshots, resume review, public speaking tips",
+      location: "Price Center Ballroom",
+      date: "April 30",
+      time: "2:00 PM",
+      org: "Triton Transfer",
+      tag: ["Professional Development"],
+      category: "Career",
+      image: "images/transfer.jpg"
+    },
+    {
+      title: "SunGod Festival",
+      desc: "Sun God, an iconic festival with good music and delicious food, seems to be the perfect way to let loose in the middle of Spring Quarter.",
+      location: "RIMAC Field",
+      date: "May 2",
+      time: "12:00 PM",
+      org: "ASCE",
+      tag: ["Performing", "Music"],
+      category: "Social",
+      image: "images/sungod.png"
+    }
+  ];
 
-// ===== Populate Highlights =====
-const highlightsContainer = document.getElementById("highlights");
-filteredHighlights.forEach(event => {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-    <h3>${event.title}</h3>
-    <p>${event.body}</p>
-    <div class="event-footer">
-      <span class="event-tag">${event.tag}</span>
-      <button class="save-btn">Save</button>
+  // Sort by date ascending
+  highlights.sort((a,b) => new Date(a.date) - new Date(b.date));
+
+  // ----- Modal -----
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.innerHTML = `
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <img src="" alt="Event Flyer" id="modal-image">
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
     </div>
   `;
-  highlightsContainer.appendChild(card);
+  document.body.appendChild(modal);
+
+  const modalImg = modal.querySelector("#modal-image");
+  const modalTitle = modal.querySelector("#modal-title");
+  const modalDesc = modal.querySelector("#modal-desc");
+  const closeBtn = modal.querySelector(".close-btn");
+  closeBtn.addEventListener("click", () => modal.style.display = "none");
+  modal.addEventListener("click", e => { if (e.target === modal) modal.style.display = "none"; });
+
+  function showModal(event) {
+    modal.style.display = "flex";
+    modalImg.src = event.image;
+    modalTitle.textContent = event.title;
+    modalDesc.textContent = event.desc;
+  }
+
+  // ----- Helpers -----
+  function isSaved(event) {
+    return savedEvents.some(e => e.title === event.title);
+  }
+
+  function toggleSave(event, btn) {
+    const index = savedEvents.findIndex(e => e.title === event.title);
+    if (index > -1) {
+      savedEvents.splice(index, 1);
+    } else {
+      savedEvents.push(event);
+    }
+    localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+    btn.classList.toggle("saved");
+    btn.innerText = btn.classList.contains("saved") ? "Saved" : "Save";
+  }
+
+  // ----- Create Highlight Card -----
+  function createCard(event) {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>${event.title}</h3>
+      <p class="event-desc">${event.desc}</p>
+      <div class="event-details">
+        <p><strong>Date:</strong> ${event.date}</p>
+        <p><strong>Time:</strong> ${event.time}</p>
+        <p><strong>Org:</strong> ${event.org}</p>
+        <p><strong>Location:</strong> ${event.location}</p>
+      </div>
+    `;
+
+    // Footer with tags + save
+    const footer = document.createElement("div");
+    footer.className = "event-footer";
+
+    event.tag.forEach(t => {
+      const tagEl = document.createElement("span");
+      tagEl.className = "event-tag";
+      tagEl.innerText = t;
+      footer.appendChild(tagEl);
+    });
+
+    const saveBtn = document.createElement("button");
+    saveBtn.className = "save-btn";
+    saveBtn.innerText = isSaved(event) ? "Saved" : "Save";
+    if (isSaved(event)) saveBtn.classList.add("saved");
+
+    saveBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      toggleSave(event, saveBtn);
+    });
+
+    footer.appendChild(saveBtn);
+    card.appendChild(footer);
+
+    // Click to open modal
+    card.addEventListener("click", () => showModal(event));
+
+    return card;
+  }
+
+  // Render highlights
+  highlights.forEach(event => highlightsContainer.appendChild(createCard(event)));
+
 });
 
 // ===== Populate Tips =====

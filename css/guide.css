@@ -28,6 +28,10 @@
   color: #182B49;
   transform: translateY(-2px);
 }
+.nav-pill.selected {
+  background: #0072ce;
+  color: white;
+}
 
 /* ==============================
    Hero Section
