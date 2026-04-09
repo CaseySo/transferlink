@@ -41,7 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       title: "TRANSPORTATION",
       items: [
-        { name: "Campus Shuttle", image: "https://via.placeholder.com/300x200", info: "Free rides." },
+        { name: "Campus Shuttle", 
+            image: "https://via.placeholder.com/300x200", 
+            info: "Get around campus for free" ,
+            link: "https://shuttle.example.com"
+        },
         { name: "Bike Routes", image: "https://via.placeholder.com/300x200", info: "Safe biking paths." },
         { name: "Parking", image: "https://via.placeholder.com/300x200", info: "Permits and zones." }
       ]
@@ -76,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <div class="flip-card-back">
             <p>${item.info}</p>
+            ${item.link ? `<a href="${item.link}" target="_blank" class="info-btn">More Info</a>` : ""}
           </div>
         </div>
       `;
