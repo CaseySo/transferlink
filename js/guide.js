@@ -159,54 +159,54 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "FUN THINGS TO DO + PLACES TO VISIT IN SAN DIEGO",
       items: [
         { name: "San Diego Zoo",
-            image: "https://via.placeholder.com/300x200",
-            info: "World-famous zoo with a wide variety of animals.",
-            link: "https://www.sandiegozoo.org/"
+            image: "images/sdzoo.jpg",
+            info: "Home to over 12,000 animals representing more than 650 species. It is world-renowned for its naturalistic, open-air habitats and significant conservation work.",
+            link: "https://zoo.sandiegozoo.org/tickets?gad_source=1&gad_campaignid=1072174265&gbraid=0AAAAADAXXWYGwH96aoSL122SvhPcQntvJ&gclid=CjwKCAjwnN3OBhA8EiwAfpTYelUbGUfSjKay8c51cyCRipd4_YGaGhlGEO6hGQtXTDtAwwmQ-V4FfhoCyKoQAvD_BwE"
          },
         { name: "Visit Balboa Park", 
-            image: "https://via.placeholder.com/300x200", 
-            info: "Advising and support.",
-            link: "https://students.ucsd.edu/"
+            image: "images/balboa.webp", 
+            info: "A cultural park with museums, gardens, and hosts many events over the weekends." ,
+            link: "https://balboapark.org/"
         },
         { name: "Birch Aquarium",
-            image: "https://via.placeholder.com/300x200",
-            info: "Help with WiFi and devices.",
-            link: "https://blink.ucsd.edu/techsupport/"
+            image: "images/birch.jpg",
+            info: "Located right next to UCSD, the Birch Aquarium is a great place to visit to see different marine life.",
+            link: "https://aquarium.ucsd.edu/?gad_source=1&gad_campaignid=20051227913&gbraid=0AAAAAplIy4-er49dc6hoLaKu2zJqulNkL&gclid=CjwKCAjwnN3OBhA8EiwAfpTYerHe2oZZ07HRpDmJihwL2OpMfYIQ9U53Tf5O6eBioAsXEy2UxW_MYBoCd8sQAvD_BwE"
         },
         { name: "Explore Little Italy and Old Town",
-            image: "https://via.placeholder.com/300x200",
-            info: "Help with WiFi and devices.",
-            link: "https://blink.ucsd.edu/techsupport/"
+            image: "images/littleitaly.webp",
+            info: "Take the Blue line down to Little Italy and Old Town to explore the culture, food, and sights!",
+            link: "https://www.tripadvisor.com/ShowTopic-g60750-i41-k7894674-Little_Italy_and_Old_Town_San_Diego-San_Diego_California.html"
         },
         { name: "Petco Park",
-            image: "https://via.placeholder.com/300x200",
-            info: "Help with WiFi and devices.",
-            link: "https://blink.ucsd.edu/techsupport/"
+            image: "images/petco.jpeg",
+            info: "Watch a game of the San Diego Padres, there are also some concerts hosted here.",
+            link: "https://www.mlb.com/padres/ballpark"
         },
         { name: "La Jolla Cove",
-            image: "https://via.placeholder.com/300x200",
-            info: "Help with WiFi and devices.",
-            link: "https://blink.ucsd.edu/techsupport/"
+            image: "images/lajollacove.jpeg",
+            info: "Small beach where sea lions and seals come to bask in the sun, there is oppurtunity to snorkel, swim, and enjoy the surroundings of great cafes.",
+            link: "https://www.sdcoastkeeper.org/blog/what-you-need-to-know-about-la-jolla-shores-part-one/?gad_source=1&gad_campaignid=20553784268&gbraid=0AAAAADnXQGT7p2JpUX1DccYcla23ogOus&gclid=CjwKCAjwnN3OBhA8EiwAfpTYejyIA3hiWjteW_7K9diqP0-fc1EL7DDz3G3fTiV_wc5xjr3tKAx_bRoCM9sQAvD_BwE"
         },
         { name: "Hike Torrey Pines",
-            image: "https://via.placeholder.com/300x200",
-            info: "Help with WiFi and devices.",
-            link: "https://blink.ucsd.edu/techsupport/"
+            image: "images/torreypines.jpg",
+            info: "Take the 101 bus to the Torrey Pines State Natural Reserve and hike trails that overlook the beach.",
+            link: "https://www.parks.ca.gov/?page_id=657"
         },
         { name: "Explore Convoy",
-            image: "https://via.placeholder.com/300x200",
-            info: "Help with WiFi and devices.",
-            link: "https://blink.ucsd.edu/techsupport/"
+            image: "images/convoy.jpeg",
+            info: "The area is world-renowned as a \"restaurant row\" featuring an incredible density of authentic Asian cuisines.",
+            link: "https://convoydistrict.com/"
         },
         { name: "Check out the Bioluminescence",
-            image: "https://via.placeholder.com/300x200",
-            info: "Help with WiFi and devices.",
-            link: "https://blink.ucsd.edu/techsupport/"
+            image: "images/biolumin.jpg",
+            info: "Every breaking wave, splashing surfer, or moving boat triggers a brief, dazzling burst of electric blue or neon light. The glow is often described as resembling a \"light saber\" or \"liquid light\".",
+            link: "https://scripps.ucsd.edu/news/red-tides-and-bioluminescence"
         },
         { name: "Check out the Amazing Food",
-            image: "https://via.placeholder.com/300x200",
-            info: "Help with WiFi and devices.",
-            link: "https://blink.ucsd.edu/techsupport/"
+            image: "images/food.jpeg",
+            info: "San Diego's food scene in April 2026 is defined by its award-winning \"Cali-Baja\" cuisine, fresh Pacific seafood, and a rapidly expanding Asian fusion market.",
+            link: "https://www.salathaisd.com/post/exploring-top-food-choices-for-students-in-san-diego-on-a-budget"
         }
 
       ]
@@ -214,9 +214,31 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       title: "HEALTH AND WELLNESS",
       items: [
-        { name: "Library", image: "https://via.placeholder.com/300x200", info: "Books, study rooms, research help." },
-        { name: "Student Services", image: "https://via.placeholder.com/300x200", info: "Advising and support." },
-        { name: "Tech Support", image: "https://via.placeholder.com/300x200", info: "Help with WiFi and devices." }
+        { name: "Counseling and Psychological Services (CAPS)", 
+            image: "images/caps.jpg", 
+            info: "CAPS is here to help navigate challenges in our community, nation and world. Explore our Help Center for the latest resources for students, offering strategies to manage stress and support for faculty and staff in creating a nurturing environment." ,
+            link: "https://caps.ucsd.edu/"
+        },
+        { name: "Center for Advocacy, Resources, and Education (CARE)", 
+            image: "images/care.png", 
+            info: "CARE at the Sexual Assault Resource Center is the UC San Diego confidential advocacy and education office for sexual violence and gender-based violence (dating violence, domestic violence, stalking)." ,
+            link: "https://care.ucsd.edu/"
+        },
+        { name: "Student Health Services", 
+            image: "images/shs.webp", 
+            info: "SHS provides primary care, urgent care, reproductive health, sports medicine, gender-affirming care, nutrition counseling, behavioral health and travel clinic services." ,
+            link: "https://studenthealth.ucsd.edu/"
+        },
+        { name: "WILLO", 
+            image: "images/willo.png", 
+            info: "Willo was built at UC San Diego to make wellness support easier to access and easier to use. It connects students to trusted campus resources, guided collections, events, and self-care tools in one place, with clear pathways for both everyday support and urgent help." ,
+            link: "https://willo.ucsd.edu/"
+        },
+        { name: "Campus Police", 
+            image: "images/police.webp", 
+            info: "Late night escorts, safety related services, and crime reporting" ,
+            link: "https://police.ucsd.edu/"
+        }
       ]
     },
     {
