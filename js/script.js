@@ -297,6 +297,17 @@ document.addEventListener("DOMContentLoaded", () => {
       image: "images/pitch.jpg"
     },
     {
+      title: "Midterm De-Stress",
+      desc: "Free boba and goodie bags",
+      location: "PCE Lodge",
+      date: "April 16",
+      time: "7:00 PM",
+      org: "RCO",
+      tag: ["Study"],
+      category: "Academic",
+      image: "images/destress.png"
+    },
+    {
       title: "Company Tour Viasat",
       desc: "Visit Viasat's Carlsbad office.",
       location: "Carlsbad",
