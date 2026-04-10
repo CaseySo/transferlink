@@ -171,23 +171,26 @@ document.addEventListener("DOMContentLoaded", () => {
     return savedEvents.some(e => e.title === event.title);
   }
 
-  function toggleSave(event, btn) {
-    const index = savedEvents.findIndex(e => e.title === event.title);
-    if (index > -1) {
-      savedEvents.splice(index, 1);
-    } else {
-      savedEvents.push(event);
-    }
-    localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
-    btn.classList.toggle("saved");
-    btn.innerText = btn.classList.contains("saved") ? "Saved" : "Save";
+  function toggleSave(event) {
+  const index = savedEvents.findIndex(e => e.title === event.title);
+
+  if (index > -1) {
+    savedEvents.splice(index, 1);
+  } else {
+    savedEvents.push(event);
   }
+
+  localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+}
 
   // ----- Create Highlight Card -----
   function createCard(event) {
-    const card = document.createElement("div");
-    card.className = "card";
+  const card = document.createElement("div");
+  card.className = "card";
 
+  if (isSaved(event)) {
+    card.classList.add("saved-card");
+  }
     card.innerHTML = `
       <h3>${event.title}</h3>
       <p class="event-desc">${event.desc}</p>
@@ -216,9 +219,24 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isSaved(event)) saveBtn.classList.add("saved");
 
     saveBtn.addEventListener("click", e => {
-      e.stopPropagation();
-      toggleSave(event, saveBtn);
-    });
+  e.stopPropagation();
+
+  toggleSave(event);
+
+  // refresh local savedEvents
+  savedEvents = JSON.parse(localStorage.getItem("savedEvents") || "[]");
+
+  const saved = isSaved(event);
+
+  saveBtn.innerText = saved ? "Saved" : "Save";
+  saveBtn.classList.toggle("saved", saved);
+
+  card.classList.toggle("saved-card", saved);
+
+  // re-render highlights so ALL cards stay in sync
+  highlightsContainer.innerHTML = "";
+  highlights.forEach(e => highlightsContainer.appendChild(createCard(e)));
+});
 
     footer.appendChild(saveBtn);
     card.appendChild(footer);
@@ -252,10 +270,9 @@ tips.forEach(tip => {
   tipsContainer.appendChild(card);
 });
 
-// ===== Save Button Toggle =====
-document.addEventListener("click", function(e) {
-  if(e.target.classList.contains("save-btn")) {
-    e.target.classList.toggle("saved");
-    e.target.innerText = e.target.classList.contains("saved") ? "Saved" : "Save";
-  }
-});
+const name = localStorage.getItem("name");
+const initial = document.getElementById("profile-initial");
+
+if (name && initial) {
+  initial.textContent = name.charAt(0).toUpperCase();
+}

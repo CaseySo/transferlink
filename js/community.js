@@ -279,3 +279,10 @@ displayClubs.forEach(c => {
   });
 
 });
+
+const name = localStorage.getItem("name");
+const initial = document.getElementById("profile-initial");
+
+if (name && initial) {
+  initial.textContent = name.charAt(0).toUpperCase();
+}

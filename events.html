@@ -6,7 +6,10 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="events-bg">
-
+<!-- Profile Button -->
+<div class="profile-btn" onclick="navigateTo('profile.html')">
+  <span id="profile-initial">K</span>
+</div>
 <div class="home-container">
 
   <!-- Hero -->
@@ -25,14 +28,6 @@
     <button class="nav-pill" onclick="navigateTo('guide.html')">Guide</button>
   </div>
 
-  <!-- Filters -->
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="All">All</button>
-    <button class="filter-btn" data-filter="Social">Social</button>
-    <button class="filter-btn" data-filter="Academic">Academic</button>
-    <button class="filter-btn" data-filter="Career">Career</button>
-  </div>
-
   <!-- Personalized -->
   <h2>For You</h2>
   <div id="personal-events" class="card-container"></div>
@@ -43,6 +38,13 @@
 
   <!-- All -->
   <h2>All Events</h2>
+  <!-- Filters -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="All">All</button>
+    <button class="filter-btn" data-filter="Social">Social</button>
+    <button class="filter-btn" data-filter="Academic">Academic</button>
+    <button class="filter-btn" data-filter="Career">Career</button>
+  </div>
   <div id="all-events" class="card-container"></div>
 
   <!-- Tips -->
@@ -52,9 +54,9 @@
     <p>Looking for more events beyond what’s listed here? These are the best places to stay updated:</p>
 
     <div class="more-links">
-      <div class="more-item">Follow UCSD orgs on Instagram</div>
-      <div class="more-item">Check campus event boards</div>
-      <div class="more-item">Visit resource centers</div>
+      <div class="more-item">Check out UCSD orgs <a href="https://studentorg.ucsd.edu/" target="_blank">HERE</a></div>
+      <div class="more-item">Check campus event boards, your email, and flyers.</div>
+      <div class="more-item">Follow Instagram accounts of UCSD orgs such as  <a href="https://www.instagram.com/ucsdasce/" target="_blank">UCSDASCE</a>, <a href="https://www.instagram.com/ucsdasce/?hl=en" target="_blank">TritonFest</a>, and <a href="https://www.instagram.com/getinvolveducsd/" target="_blank">UCSD Student Involvement</a></div>
     </div>
   </div>
 

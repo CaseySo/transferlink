@@ -296,3 +296,32 @@ h2 {
   font-size: 0.8rem;
   color: #666;
 }
+
+/* ==============================
+   Profile Circle Button
+   ============================== */
+.profile-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #182B49; /* UCSD blue */
+  color: #FFC72C; /* gold */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1000;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+
+.profile-btn:hover {
+  transform: scale(1.1);
+  background-color: #0057b8;
+}

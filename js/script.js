@@ -457,6 +457,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = document.createElement("div");
     card.className = "event-card";
 
+    if (isSaved(event)) {
+      card.classList.add("saved-card");
+    }
+
     card.innerHTML = `
       <h3>${event.title}</h3>
       <p class="event-desc">${event.desc}</p>
@@ -506,20 +510,33 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentFilter = "All";
 
   function renderEvents(filter = "All") {
-    personalContainer.innerHTML = "";
-    allContainer.innerHTML = "";
+  personalContainer.innerHTML = "";
+  allContainer.innerHTML = "";
 
-    const filtered = filter === "All" 
-      ? events 
-      : events.filter(e => e.category === filter);
+  // ✅ 1. FOR YOU (exclude saved)
+  events.forEach(event => {
+    const matchesInterest = interests.some(i => event.tag.includes(i));
+    if (matchesInterest && !isSaved(event)) {
+      personalContainer.appendChild(createCard(event));
+    }
+  });
 
-    filtered.forEach(event => {
-      allContainer.appendChild(createCard(event));
-      if (interests.some(i => event.tag.includes(i))) {
-        personalContainer.appendChild(createCard(event));
-      }
-    });
+  // ✅ 2. ALL EVENTS (apply filter + exclude saved + exclude "for you")
+  let filtered = events;
+
+  if (filter !== "All") {
+    filtered = events.filter(e => e.category === filter);
   }
+
+  filtered = filtered.filter(event => {
+    const isPersonal = interests.some(i => event.tag.includes(i));
+    return !isSaved(event) && !isPersonal;
+  });
+
+  filtered.forEach(event => {
+    allContainer.appendChild(createCard(event));
+  });
+}
 
   function renderSaved() {
     savedContainer.innerHTML = "";
@@ -654,3 +671,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+const name = localStorage.getItem("name");
+const initial = document.getElementById("profile-initial");
+
+if (name && initial) {
+  initial.textContent = name.charAt(0).toUpperCase();
+}

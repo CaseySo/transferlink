@@ -601,12 +601,12 @@ h2 {
 }
 
 .event-tag {
-  background-color: #e0e0e0; /* grey background */
+  background-color: #fff; /* grey background */
   color: #000; /* black text */
 }
 
 .event-type {
-  background-color: #e0e0e0;
+  background-color: #fff;
   color: #000;
 }
 
@@ -755,4 +755,57 @@ h2 {
 
 .close-btn:hover {
   color: #000;
+}
+
+/* ==============================
+   Profile Circle Button
+   ============================== */
+.profile-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #182B49; /* UCSD blue */
+  color: #FFC72C; /* gold */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1000;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+
+.profile-btn:hover {
+  transform: scale(1.1);
+  background-color: #0057b8;
+}
+
+/* ==============================
+   Saved Event Highlight
+   ============================== */
+.saved-card {
+  border: 2px solid #FFC72C; /* UCSD gold */
+  background: linear-gradient(135deg, #fffdf5, #fff);
+  box-shadow: 0 6px 18px rgba(255, 199, 44, 0.3);
+  position: relative;
+}
+
+/* Optional: little badge */
+.saved-card::before {
+  content: "★ Saved";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #FFC72C;
+  color: #182B49;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: bold;
 }
