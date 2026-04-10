@@ -268,22 +268,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const isOpen = panel.classList.contains("open");
 
       if (isOpen) {
-        // Collapse panel
         panel.style.maxHeight = null;
         panel.classList.remove("open");
         button.classList.remove("active");
       } else {
-        // Expand panel fully
         panel.style.maxHeight = panel.scrollHeight + "px";
         panel.classList.add("open");
         button.classList.add("active");
-
-        // Remove maxHeight after transition to allow dynamic height
         setTimeout(() => {
           if (panel.classList.contains("open")) {
             panel.style.maxHeight = "none";
           }
-        }, 300); // should match your CSS transition
+        }, 300);
       }
     });
   });

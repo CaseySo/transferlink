@@ -1,8 +1,6 @@
 function navigateTo(page) {
   window.location.href = page;
 }
-
-/* ⭐ Generate Stars */
 function generateStars(rating) {
   let stars = "";
   for (let i = 0; i < 5; i++) {

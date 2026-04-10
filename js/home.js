@@ -6,13 +6,12 @@ function navigateTo(page) {
    DOM Loaded
    ============================== */
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== Profile Page =====
+  //  Profile Page 
   if (document.getElementById('name')) {
     // Setup dropdowns
     setupSearch("major-search", "major-dropdown", majors);
     setupSearch("college-search", "college-dropdown", colleges);
 
-    // Load saved profile data
     const name = localStorage.getItem('name');
     const major = localStorage.getItem('major');
     const college = localStorage.getItem('college');
@@ -22,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (major) document.getElementById('major-search').value = major;
     if (college) document.getElementById('college-search').value = college;
 
-    // Setup interest buttons
     document.querySelectorAll('.interest-btn').forEach(btn => {
       const interest = btn.dataset.interest;
       if (interests.includes(interest)) {
@@ -82,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-// ===== Sample Data =====
+
 const newsletter = {
   title: "UCSD Weekly Highlights",
   body: "Your weekly roundup of campus news, events, and tips for success!"
@@ -136,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ];
 
-  // Sort by date ascending
   highlights.sort((a,b) => new Date(a.date) - new Date(b.date));
 
   // ----- Modal -----
@@ -202,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    // Footer with tags + save
     const footer = document.createElement("div");
     footer.className = "event-footer";
 
@@ -223,7 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   toggleSave(event);
 
-  // refresh local savedEvents
   savedEvents = JSON.parse(localStorage.getItem("savedEvents") || "[]");
 
   const saved = isSaved(event);
@@ -232,8 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
   saveBtn.classList.toggle("saved", saved);
 
   card.classList.toggle("saved-card", saved);
-
-  // re-render highlights so ALL cards stay in sync
   highlightsContainer.innerHTML = "";
   highlights.forEach(e => highlightsContainer.appendChild(createCard(e)));
 });
@@ -241,18 +234,16 @@ document.addEventListener("DOMContentLoaded", () => {
     footer.appendChild(saveBtn);
     card.appendChild(footer);
 
-    // Click to open modal
     card.addEventListener("click", () => showModal(event));
 
     return card;
   }
 
-  // Render highlights
   highlights.forEach(event => highlightsContainer.appendChild(createCard(event)));
 
 });
 
-// ===== Populate Tips =====
+//  Populate Tips 
 const tips = [
   { title: "Time Management", body: "Use a planner or digital calendar to stay on top of assignments and deadlines." },
   { title: "Study Spots", body: "Check out Geisel Library's top floors for quiet, productive study areas." },
@@ -262,7 +253,7 @@ const tips = [
 const tipsContainer = document.getElementById("tips");
 tips.forEach(tip => {
   const card = document.createElement("div");
-  card.className = "tips-card"; // new class
+  card.className = "tips-card"; 
   card.innerHTML = `
     <h3>${tip.title}</h3>
     <p>${tip.body}</p>

@@ -13,7 +13,7 @@
 }
 
 .nav-pill {
-  background-color: #182B49; /* UCSD Blue */
+  background-color: #182B49;
   border: none;
   padding: 12px 24px;
   border-radius: 30px;
@@ -24,59 +24,13 @@
 }
 
 .nav-pill:hover {
-  background-color: #FFC72C; /* Gold pop on hover */
+  background-color: #FFC72C;
   color: #182B49;
   transform: translateY(-2px);
 }
 .nav-pill.selected {
   background: #0072ce;
   color: white;
-}
-
-/* ==============================
-   Hero Section
-   ============================== */
-.hero {
-  text-align: center;
-  color: #ffffff; /* change text for readability */
-
-  padding: 60px 20px;
-  border-radius: 16px;
-  margin: 20px auto 40px auto;
-  max-width: 1000px;
-
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-
-  /* 👇 background image */
-  background-image: url("../images/sungod.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.40); /* dark overlay */
-  border-radius: 16px;
-}
-
-.hero h1,
-.hero p {
-  position: relative;
-  z-index: 1;
-}
-
-.hero h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 1.2rem;
 }
 
 /* ==============================
@@ -100,7 +54,9 @@ h2 {
   color: #222;
 }
 
-
+.hero {
+  background-image: url("../images/sungod.jpg");
+}
 /* ==============================
    Section Titles
    ============================== */
@@ -126,7 +82,7 @@ h2 {
   padding: 20px;
   scroll-behavior: smooth;
 
-  justify-content: flex-start; /* MUST be this */
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -203,14 +159,14 @@ h2 {
   transform: rotateY(180deg);
   position: absolute;
   width: 100%;
-  height: 100%; /* 🔥 keeps it same size as front */
+  height: 100%; 
   border-radius: 12px;
   box-sizing: border-box;
   padding: 15px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center; /* center text */
+  justify-content: center;
   align-items: center;
   text-align: center;
 }
@@ -228,7 +184,7 @@ h2 {
   display: flex;
   gap: 25px;
   overflow-x: auto;
-  padding: 20px 60px; /* add left/right padding so cards don't touch arrows */
+  padding: 20px 60px; 
   scroll-behavior: smooth;
 }
 
@@ -264,9 +220,9 @@ h2 {
 
 .info-btn {
   position: absolute;
-  bottom: 12px; /* 🔥 locks to bottom */
+  bottom: 12px;
   left: 50%;
-  transform: translateX(-50%); /* centers horizontally */
+  transform: translateX(-50%);
 
   padding: 6px 14px;
   background-color: #0057b8;
@@ -291,8 +247,8 @@ h2 {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: #182B49; /* UCSD blue */
-  color: #FFC72C; /* gold */
+  background-color: #182B49;
+  color: #FFC72C;
   display: flex;
   align-items: center;
   justify-content: center;

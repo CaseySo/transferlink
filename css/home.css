@@ -11,55 +11,11 @@
 body {
   background-color: #eef2f6;
   color: #182B49;
-  padding: 20px; /* page padding to avoid touching edges */
+  padding: 20px; 
 }
-
-/* ==============================
-   Hero Section
-   ============================== */
 .hero {
-  text-align: center;
-  color: #ffffff; /* change text for readability */
-
-  padding: 60px 20px;
-  border-radius: 16px;
-  margin: 20px auto 40px auto;
-  max-width: 1000px;
-
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-
-  /* 👇 background image */
   background-image: url("../images/sign.avif");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  position: relative;
-  overflow: hidden;
 }
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.40); /* dark overlay */
-  border-radius: 16px;
-}
-
-.hero h1,
-.hero p {
-  position: relative;
-  z-index: 1;
-}
-
-.hero h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 1.2rem;
-}
-
 /* ==============================
    Navigation Pills
    ============================== */
@@ -205,7 +161,6 @@ body {
   gap: 20px;
 }
 
-/* Event / Highlights Cards */
 .card {
   background-color: #ffffff;
   padding: 20px;
@@ -214,7 +169,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
-  min-height: 320px; /* ensure footer has space at bottom */
+  min-height: 320px; 
 }
 
 .card h3 {
@@ -241,21 +196,21 @@ body {
   color: #333;
 }
 
-/* Event Footer (for save button and tags) */
+/* Event Footer */
 .event-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto; /* sticks footer to bottom */
-  flex-wrap: wrap; /* ensures tags don't overflow */
+  margin-top: auto;
+  flex-wrap: wrap; 
   gap: 8px;
   border-top: 1px solid #f0f0f0;
   padding-top: 10px;
 }
 
 .event-tag {
-  background-color: #ffffff; /* grey background */
-  color: #000; /* black text */
+  background-color: #ffffff;
+  color: #000; 
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
@@ -310,9 +265,9 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6); /* semi-transparent background */
-  justify-content: center;      /* horizontal centering */
-  align-items: center;          /* vertical centering */
+  background: rgba(0,0,0,0.6); 
+  justify-content: center;
+  align-items: center;
   z-index: 9999;
 }
 
@@ -361,11 +316,11 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* top-align text */
+  justify-content: flex-start;
   transition: transform 0.3s, box-shadow 0.3s;
-  min-height: 150px; /* ensures all cards same minimum size */
-  max-height: 180px; /* prevents extremely tall cards */
-  overflow: hidden; /* cuts off excessive text if needed */
+  min-height: 150px;
+  max-height: 180px;
+  overflow: hidden; 
 }
 
 .tips-card h3 {
@@ -378,7 +333,7 @@ body {
   font-size: 0.9rem;
   color: #555;
   line-height: 1.4;
-  flex-grow: 1; /* makes sure paragraph fills space evenly */
+  flex-grow: 1;
 }
 
 .tips-card:hover {
@@ -395,8 +350,8 @@ body {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: #182B49; /* UCSD blue */
-  color: #FFC72C; /* gold */
+  background-color: #182B49;
+  color: #FFC72C;
   display: flex;
   align-items: center;
   justify-content: center;

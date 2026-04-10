@@ -7,12 +7,10 @@ function navigateTo(page) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ===== Highlight current page =====
   const page = window.location.pathname.split("/").pop();
   const pill = document.getElementById(page.replace(".html", "") + "-pill");
   if (pill) pill.classList.add("selected");
 
-  // ===== Get user data =====
   const userMajor = localStorage.getItem("major") || "";
   const userInterests = JSON.parse(localStorage.getItem("interests") || "[]");
   const userCourses = JSON.parse(localStorage.getItem("courses") || "[]");
@@ -103,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
   localStorage.setItem("people", JSON.stringify(people));
-  
+
   const peopleContainer = document.getElementById("people-carousel");
 
   const filteredPeople = people.filter(p =>
@@ -137,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
       matchScore > 70 ? "Highly Compatible" :
       matchScore > 40 ? "Good Match" : "Explore";
 
-    // ===== GOING TEXT =====
     const goingText = p.going?.length
       ? "Going to: " + p.going.slice(0, 3).join(", ")
       : "Not going to events yet";
@@ -236,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "Public Health (B.S.)": ["PH100", "PH101"]
   };
 
-  // All available groups
   const allGroups = [
     { course: "CSE101", name: "CSE 101 Study Group", email: "____@ucsd.edu", image: "images/study.jpg" },
     { course: "CSE110", name: "CSE 110 Project Group", email: "____@ucsd.edu", image: "images/study.jpg" },
@@ -251,11 +247,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const groupsContainer = document.getElementById("groups-container");
 
-  // Filter groups based on the user's major
   const recommendedCourses = majorToCourses[userMajor] || [];
   const filteredGroups = allGroups.filter(g => recommendedCourses.includes(g.course));
 
-  // If no groups match the major, show all
   const displayGroups = filteredGroups.length ? filteredGroups : allGroups;
 
   displayGroups.forEach(g => {

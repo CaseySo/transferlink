@@ -9,7 +9,7 @@
 }
 
 .nav-pill {
-  background-color: #182B49; /* UCSD Blue */
+  background-color: #182B49; 
   border: none;
   padding: 12px 24px;
   border-radius: 30px;
@@ -20,17 +20,21 @@
 }
 
 .nav-pill:hover {
-  background-color: #FFC72C; /* Gold pop on hover */
+  background-color: #FFC72C;
   color: #182B49;
   transform: translateY(-2px);
 }
 
+.hero {
+  background-image: url("../images/bear.jpg");
+}
 /* ==============================
    Hero Section
-   ============================== */
 .hero {
+  width: 1000px;
+  height: 200px;
   text-align: center;
-  color: #ffffff; /* change text for readability */
+  color: #ffffff; 
 
   padding: 60px 20px;
   border-radius: 16px;
@@ -39,7 +43,6 @@
 
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 
-  /* 👇 background image */
   background-image: url("../images/bear.jpg");
   background-size: cover;
   background-position: center;
@@ -52,7 +55,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.40); /* dark overlay */
+  background: rgba(0, 0, 0, 0.40);
   border-radius: 16px;
 }
 
@@ -70,7 +73,7 @@
 .hero p {
   font-size: 1.2rem;
 }
-
+============================== */
 /* ==============================
    General Styles
    ============================== */
@@ -307,8 +310,8 @@ h2 {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: #182B49; /* UCSD blue */
-  color: #FFC72C; /* gold */
+  background-color: #182B49;
+  color: #FFC72C;
   display: flex;
   align-items: center;
   justify-content: center;

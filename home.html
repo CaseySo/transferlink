@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Home</title>
+    <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
@@ -10,13 +11,13 @@
 <div class="profile-btn" onclick="navigateTo('profile.html')">
   <span id="profile-initial">K</span>
 </div>
-<!-- ===== Hero ===== -->
+<!--  Hero  -->
 <section class="hero">
   <h1 id="greeting">Welcome!</h1>
   <p id="profile-info">Here's what’s new for you this week</p>
 </section>
 
-<!-- ===== Navigation ===== -->
+<!--  Navigation  -->
 <div class="top-nav">
   <button class="nav-pill selected" onclick="navigateTo('home.html')">Home</button>
   <button class="nav-pill" onclick="navigateTo('events.html')">Events</button>
@@ -25,7 +26,7 @@
   <button class="nav-pill" onclick="navigateTo('guide.html')">Guide</button>
 </div>
 
-<!-- ===== Featured Newsletter ===== -->
+<!--  Featured Newsletter  -->
 <section class="newsletter-section">
   <h2>📬 This Week’s Newsletter</h2>
   <div class="newsletter-card">
@@ -48,7 +49,7 @@
 </div>
 </section>
 
-<!-- ===== Upcoming Highlights ===== -->
+<!--  Upcoming Highlights -->
 <section class="newsletter-section">
   <h2>🔥 Upcoming Highlights</h2>
   <div class="card-container" id="highlights">
@@ -56,11 +57,10 @@
   </div>
 </section>
 
-<!-- ===== Tips Section ===== -->
+<!--  Tips Section  -->
 <section class="newsletter-section">
   <h2>📚 Tips for You</h2>
   <div class="card-container" id="tips">
-    <!-- Cards populated by JS -->
   </div>
 </section>
 

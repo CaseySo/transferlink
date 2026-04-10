@@ -2,10 +2,6 @@
    Login Page Styles
    ============================== */
 
-/* ==============================
-   FULL PAGE BACKGROUNDS
-   ============================== */
-
 body.index-bg {
   background-image: url("../images/geisel.jpg");
   background-size: cover;
@@ -38,15 +34,15 @@ body.profile-bg {
 }
 
 body.events-bg {
-  background-color: #f0f6ff; /* light blue tint */
+  background-color: #f0f6ff; 
 }
 body.courses-bg {
-  background-color: #f8f6f0; /* light gold tint */
+  background-color: #f8f6f0; 
 }
 
 /* ----- Login Box ----- */
 .login-box {
-  position: relative; /* above overlay */
+  position: relative;
   background-color: rgba(255,255,255,0.95);
   padding: 2.5rem 3rem;
   border-radius: 20px;
@@ -65,7 +61,7 @@ body.courses-bg {
 /* ----- Welcome Text ----- */
 .login-box h1 {
   margin-bottom: 0.5rem;
-  color: #00274D; /* UCSD Blue */
+  color: #00274D; 
 }
 
 .login-box p {
@@ -91,8 +87,8 @@ body.courses-bg {
   margin-top: 1rem;
   border-radius: 12px;
   border: none;
-  background-color: #00274D; /* UCSD blue */
-  color: #FFC72C; /* UCSD gold */
+  background-color: #00274D;
+  color: #FFC72C; 
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -108,7 +104,7 @@ body.courses-bg {
    Profile / Interests Page
    ============================== */
 .login-background {
-  background: #f5f5f5; /* neutral background */
+  background: #f5f5f5; 
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -116,7 +112,7 @@ body.courses-bg {
 }
 
 .login-box {
-  background-color: #ffffff; /* neutral card */
+  background-color: #ffffff;
   padding: 40px 30px;
   border-radius: 20px;
   max-width: 500px;
@@ -165,7 +161,7 @@ body.courses-bg {
 
 .interests-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 4 per row */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -222,10 +218,8 @@ body.courses-bg {
   border-radius: 14px;
   margin-top: 6px;
 
-  /* ✨ depth */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 
-  /* ✨ smooth */
   overflow: hidden;
   max-height: 220px;
   overflow-y: auto;
@@ -235,8 +229,8 @@ body.courses-bg {
 }
 
 .dropdown-item {
-  padding: 14px 16px; /* more breathing room */
-  line-height: 1.4;   /* less cramped text */
+  padding: 14px 16px;
+  line-height: 1.4;   
 }
 
 /* ==============================
@@ -250,8 +244,8 @@ body.courses-bg {
 }
 
 body {
-  background-color: #f5f5f5; /* Neutral background */
-  color: #182B49; /* UCSD Blue main text */
+  background-color: #f5f5f5; 
+  color: #182B49; 
 }
 
 /* ==============================
@@ -267,15 +261,21 @@ body {
    Hero Section
    ============================== */
 .hero {
-  text-align: center;
+  width: 900px;
+  height: 250px;
+  margin: 20px auto 40px;
   padding: 60px 20px;
+
+  text-align: center;
+  color: #fff;
+
   border-radius: 16px;
-  margin: 20px auto 40px auto;
-  max-width: 1000px;
-  color: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
   position: relative;
   overflow: hidden;
 }
@@ -317,7 +317,7 @@ body {
 }
 
 .nav-pill {
-  background-color: #182B49; /* UCSD Blue */
+  background-color: #182B49; 
   border: none;
   padding: 12px 24px;
   border-radius: 30px;
@@ -328,7 +328,7 @@ body {
 }
 
 .nav-pill:hover {
-  background-color: #FFC72C; /* Gold pop on hover */
+  background-color: #FFC72C; 
   color: #182B49;
   transform: translateY(-2px);
 }
@@ -354,7 +354,7 @@ h2 {
 }
 
 .card {
-  background-color: #ffffff; /* neutral card */
+  background-color: #ffffff; 
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.1);
@@ -365,18 +365,18 @@ h2 {
 .card h3 {
   font-size: 1.2rem;
   margin-bottom: 10px;
-  color: #182B49; /* main blue titles */
+  color: #182B49; 
 }
 
 .card p {
   font-size: 0.95rem;
-  color: #555; /* darker neutral text inside card */
+  color: #555;
 }
 
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-  border-top: 4px solid #FFC72C; /* gold accent on hover */
+  border-top: 4px solid #FFC72C; 
 }
 
 
@@ -387,16 +387,16 @@ h2 {
 /* Container for cards */
 .course-boxes {
   display: flex;
-  justify-content: center;   /* center the cards horizontally */
-  gap: 20px;                 /* space between cards */
-  flex-wrap: wrap;           /* wrap if screen is too small */
-  margin: 30px 0;            /* spacing from hero / other content */
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 30px 0;
 }
 
 /* Individual course cards */
 .course-card {
-  flex: 1 1 280px;           /* minimum width 280px, grows if space */
-  max-width: 320px;          /* prevent overly wide cards */
+  flex: 1 1 280px;           
+  max-width: 320px;         
   background-color: #fff;
   border-radius: 16px;
   padding: 20px;
@@ -415,7 +415,7 @@ h2 {
 
 .course-card h3 {
   font-size: 1.3rem;
-  color: #0057b8;  /* UCSD Blue */
+  color: #0057b8;  
   margin-bottom: 10px;
 }
 
@@ -452,19 +452,19 @@ h2 {
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-/* Container to hold the three accordions side by side */
+
 .accordion-container {
   display: flex;
-  gap: 20px;            /* spacing between accordions */
+  gap: 20px;            
   justify-content: center;
-  flex-wrap: wrap;      /* wraps on smaller screens */
+  flex-wrap: wrap;      
   margin: 20px 0;
 }
 
 /* Each accordion box */
 .accordion-box {
-  flex: 1 1 300px;       /* min width 300px, grow if space */
-  max-width: 350px;      /* optional max width */
+  flex: 1 1 300px;       
+  max-width: 350px;      
   background-color: #f9f9f9;
   border-radius: 8px;
   overflow: hidden;
@@ -486,7 +486,7 @@ h2 {
 }
 
 .accordion.active {
-  background-color: #ffc72c; /* UCSD yellow */
+  background-color: #ffc72c;
   color: #0057b8;
 }
 
@@ -496,10 +496,10 @@ h2 {
   overflow: hidden;
   transition: max-height 0.3s ease-out, padding 0.3s ease-out;
   background-color: #eef3f7;
-  padding: 0 20px; /* start with zero vertical padding */
+  padding: 0 20px;
 }
 .panel.open {
-  padding: 15px 20px; /* add vertical padding when open */
+  padding: 15px 20px;
 }
 
 /* ==============================
@@ -548,7 +548,7 @@ h2 {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* footer sticks to bottom */
+  justify-content: space-between;
   min-height: 300px;
   font-family: 'Arial', sans-serif;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -594,7 +594,7 @@ h2 {
   gap: 6px;
 }
 
-/* TAG STYLE (kept consistent) */
+/* TAG STYLE  */
 .event-tag {
   background: #fff;
   color: #000;
@@ -650,8 +650,8 @@ h2 {
 }
 
 .event-tag {
-  background-color: #fff; /* grey background */
-  color: #000; /* black text */
+  background-color: #fff; 
+  color: #000;
 }
 
 .event-type {
@@ -757,15 +757,15 @@ h2 {
    Modal Styles
    ============================== */
 .modal {
-  display: none; /* hide modal initially */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6); /* semi-transparent background */
-  justify-content: center;      /* horizontal centering */
-  align-items: center;          /* vertical centering */
+  background: rgba(0,0,0,0.6); 
+  justify-content: center;
+  align-items: center;
   z-index: 9999;
 }
 
@@ -816,8 +816,8 @@ h2 {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: #182B49; /* UCSD blue */
-  color: #FFC72C; /* gold */
+  background-color: #182B49; 
+  color: #FFC72C; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -839,7 +839,7 @@ h2 {
    Saved Event Highlight
    ============================== */
 .saved-card {
-  border: 2px solid #FFC72C; /* UCSD gold */
+  border: 2px solid #FFC72C;
   background: linear-gradient(135deg, #fffdf5, #fff);
   box-shadow: 0 6px 18px rgba(255, 199, 44, 0.3);
   position: relative;
