@@ -234,12 +234,12 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const allGroups = [
-    { course: "CSE101", name: "CSE 101 Study Group", email: "____@ucsd.edu", image: "images/study.jpg" },
-    { course: "CSE110", name: "CSE 110 Project Group", email: "____@ucsd.edu", image: "images/study.jpg" },
-    { course: "CSE120", name: "CSE 120 Lab Group", email: "____@ucsd.edu", image: "images/study.jpg" },
-    { course: "DSC10", name: "DSC 10 Study Group", email: "____@ucsd.edu", image: "images/study.jpg" },
-    { course: "BILD1", name: "BILD 1 Study Group", email: "____@ucsd.edu", image: "images/study.jpg" },
-    { course: "PSYC60", name: "Psych 60 Study Group", email: "____@ucsd.edu", image: "images/study.jpg" },
+    { course: "CSE101", name: "CSE 101 Study Group", number: "People Joined: 5", email: "____@ucsd.edu", image: "images/study.jpg" },
+    { course: "CSE110", name: "CSE 110 Project Group", number: "People Joined: 3", email: "____@ucsd.edu", image: "images/study.jpg" },
+    { course: "CSE120", name: "CSE 120 Lab Group", number: "People Joined: 4", email: "____@ucsd.edu", image: "images/study.jpg" },
+    { course: "DSC10", name: "DSC 10 Study Group", number: "People Joined: 6", email: "____@ucsd.edu", image: "images/study.jpg" },
+    { course: "BILD1", name: "BILD 1 Study Group", number: "People Joined: 2", email: "____@ucsd.edu", image: "images/study.jpg" },
+    { course: "PSYC60", name: "Psych 60 Study Group", number: "People Joined: 7", email: "____@ucsd.edu", image: "images/study.jpg" },
     { course: "MATH20A", name: "Math 20A Study Group", email: "____@ucsd.edu", image: "images/study.jpg" },
     { course: "ART10", name: "Art 10 Workshop Group", email: "____@ucsd.edu", image: "images/study.jpg" },
     { course: "PH100", name: "Public Health 100 Study Group", email: "____@ucsd.edu", image: "images/study.jpg" }
@@ -260,12 +260,13 @@ document.addEventListener("DOMContentLoaded", () => {
       <img src="${g.image}" alt="${g.name}">
       <h4>${g.name}</h4>
       <p>${g.course}</p>
+      <p>${g.email}</p>
     `;
 
     card.dataset.type = "group";
     card.dataset.name = g.name;
-    card.dataset.instagram = g.instagram;
     card.dataset.email = g.email;
+    card.dataset.number = g.number;
     card.dataset.img = g.image;
 
     groupsContainer.appendChild(card);
@@ -302,6 +303,12 @@ document.addEventListener("DOMContentLoaded", () => {
       modalDesc.innerHTML = `
         ${card.dataset.desc}<br><br>
         📸 ${card.dataset.instagram}
+      `;
+    }
+    if (card.dataset.type === "group") {
+      modalDesc.innerHTML = `
+        ${card.dataset.number}<br><br>
+        📸 ${card.dataset.email}
       `;
     }
   });
