@@ -56,7 +56,43 @@ document.addEventListener("DOMContentLoaded", () => {
       email: "daniel@ucsd.edu",
       instagram: "@datadan",
       image: "images/p4.png"
-    }
+    },
+    {
+      name: "John Snow",
+      major: "Public Health (B.S.)",
+      clubs: ["PH Club"],
+      interests: ["Gaming", "Fitness"],
+      email: "john@ucsd.edu",
+      instagram: "@johnsnow",
+      image: "images/p5.jpg"
+    },
+    {
+      name: "Jane Doe",
+      major: "Mathematics (B.S.)",
+      clubs: ["Math Club"],
+      interests: ["Art", "Nature"],
+      email: "jane@ucsd.edu",
+      instagram: "@janedoe",
+      image: "images/p6.webp"
+    },
+    {
+      name: "Spencer Reid",
+      major: "Economics (B.A.)",
+      clubs: ["Econ Club", "Finance Society", "Music"],
+      interests: ["Art", "Nature", "Travel"],
+      email: "spencer@ucsd.edu",
+      instagram: "@spencerreid",
+      image: "images/p7.webp"
+    },
+    {
+      name: "Sherlock Holmes",
+      major: "Psychology (B.S.)",
+      clubs: ["Detective Club", "Literature Society", "Mystery Enthusiasts"],
+      interests: ["Books", "Performing", "Travel"],
+      email: "sherlock@ucsd.edu",
+      instagram: "@sherlockholmes",
+      image: "images/p8.jpeg"
+    },
   ];
 
   const peopleContainer = document.getElementById("people-carousel");
