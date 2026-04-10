@@ -72,10 +72,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = document.createElement("div");
     card.className = "carousel-card people-card";
 
+    // calculate match score (simple but powerful)
+    let matchScore = 0;
+
+    if (p.major === userMajor) matchScore += 50;
+    const sharedInterests = p.interests.filter(i => userInterests.includes(i));
+    matchScore += sharedInterests.length * 15;
+
+    // cap at 100
+    matchScore = Math.min(matchScore, 100);
+
     card.innerHTML = `
       <img src="${p.image}">
       <h4>${p.name}</h4>
       <p>${p.major}</p>
+      <p class="match">${matchScore}% match</p>
+      <p class="shared">
+      ${sharedInterests.length ? "Shared: " + sharedInterests.join(", ") : ""}
+      </p>
     `;
 
     card.dataset.type = "person";
@@ -209,6 +223,7 @@ displayClubs.forEach(c => {
     card.dataset.type = "group";
     card.dataset.name = g.name;
     card.dataset.instagram = g.instagram;
+    card.dataset.email = g.email;
     card.dataset.img = g.image;
 
     groupsContainer.appendChild(card);
