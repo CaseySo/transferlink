@@ -6,7 +6,27 @@
 function navigateTo(page) {
   window.location.href = page;
 }
+/* ==============================
+   Backgrounds
+   ============================== */
+document.addEventListener("DOMContentLoaded", () => {
 
+  // ===== INDEX (login page) =====
+  if (document.getElementById('email')) {
+    document.body.classList.add("index-bg");
+  }
+
+  // ===== PROFILE PAGE =====
+  if (document.getElementById('name')) {
+    document.body.classList.add("profile-bg");
+  }
+
+  // ===== HOME PAGE =====
+  if (document.getElementById('greeting')) {
+    document.body.classList.add("home-bg");
+  }
+
+});
 /* ==============================
    Login Page
    ============================== */

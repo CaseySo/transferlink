@@ -2,18 +2,46 @@
    Login Page Styles
    ============================== */
 
-/* ----- Background ----- */
-.login-background {
-  background-image: url('../images/geisel.png'); /* your photo */
-  background-repeat: no-repeat;
-  background-position: center center; /* center image */
-  background-size: cover; /* cover entire area */
-  background-color: #000; /* fallback color */
-  height: 100vh;
+/* ==============================
+   FULL PAGE BACKGROUNDS
+   ============================== */
+
+body.index-bg {
+  background-image: url("../images/geisel.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  /* ADD THESE */
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  min-height: 100vh;
+}
+body.profile-bg {
+  background-image: url("../images/bb.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+body.index-bg,
+body.profile-bg {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+body.events-bg {
+  background-color: #f0f6ff; /* light blue tint */
+}
+body.courses-bg {
+  background-color: #f8f6f0; /* light gold tint */
 }
 
 /* ----- Login Box ----- */
@@ -240,22 +268,42 @@ body {
    ============================== */
 .hero {
   text-align: center;
-  background-color: #ffffff; /* neutral hero card */
-  color: #182B49; 
   padding: 60px 20px;
   border-radius: 16px;
-  margin-bottom: 40px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
+  margin: 20px auto 40px auto;
+  max-width: 1000px;
+  color: white;
 
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-events {
+  background-image: url("../images/trtionstature.jpg");
+}
+.hero-courses {
+  background-image: url("../images/fallen.webp");
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  border-radius: 16px;
+}
+.hero h1,
+.hero p {
+  position: relative;
+  z-index: 1;
+}
 .hero h1 {
   font-size: 2.8rem;
   margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  opacity: 0.8;
+  font-size: 1.2rem;;
 }
 
 /* ==============================

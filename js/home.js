@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const highlights = [
     {
       title: "Company Tour Viasat",
-      desc: "Visit Viasat's Carlsbad office.",
+      desc: "Visit Viasat's Carlsbad office. Click for details.",
       location: "Carlsbad",
       date: "April 17",
       time: "9:00 AM",
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       title: "Transfer Career Day",
-      desc: "Headshots, resume review, public speaking tips",
+      desc: "Headshots, resume review, public speaking tips. Click for details.",
       location: "Price Center Ballroom",
       date: "April 30",
       time: "2:00 PM",
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       title: "SunGod Festival",
-      desc: "Sun God, an iconic festival with good music and delicious food, seems to be the perfect way to let loose in the middle of Spring Quarter.",
+      desc: "Sun God, an iconic festival with good music and delicious food, seems to be the perfect way to let loose in the middle of Spring Quarter. Click for details.",
       location: "RIMAC Field",
       date: "May 2",
       time: "12:00 PM",

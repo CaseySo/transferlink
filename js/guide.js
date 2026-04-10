@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
             image: "images/hammock.jpg", 
             info: "Campus Hammocks for relaxation and study. Located on Library walk, perfect for reading and studying. No outlets and wifi can be spotty at times.", 
             rating: 3,
-            link: "https://library.ucsd.edu/"
+            link: "https://universitycenters.ucsd.edu/events-and-reservations/room-guide-pages/library-walk-lawn-east.html"
          },
          { name: "Price Center", 
             image: "images/price.jpg", 
