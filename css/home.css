@@ -75,58 +75,108 @@ body {
    Sections & Cards
    ============================== */
 .newsletter-section {
-  margin-bottom: 40px;
-  max-width: 1000px;
+  margin-bottom: 50px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* Section Title */
 .newsletter-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
+  font-size: 1.6rem;
+  margin-bottom: 16px;
   color: #182B49;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-/* Newsletter Card */
+/* ==============================
+   Newsletter Card (Glow + Depth)
+   ============================== */
 .newsletter-card {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #ffffff, #f9fbff);
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
   text-align: left;
-}
-
-.newsletter-card h3 {
-  font-size: 1.5rem;
-}
-
-.newsletter-card p {
-  font-size: 1rem;
-  color: #555;
-}
-
-.newsletter-card button {
-  align-self: flex-start;
-  padding: 10px 20px;
-  background-color: #182B49;
-  color: #FFC72C;
-  border: none;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
+  border: 1px solid #eef1f6;
   transition: all 0.3s ease;
 }
 
+/* subtle hover lift */
+.newsletter-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* Title */
+.newsletter-card h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #182B49;
+  line-height: 1.3;
+}
+
+/* Paragraphs */
+.newsletter-card p {
+  margin-bottom: 10px;
+  line-height: 1.7;
+  font-size: 0.98rem;
+  color: #444;
+}
+
+/* Emphasis line (last sentence) */
+.newsletter-card p:last-child {
+  font-weight: 600;
+  color: #182B49;
+}
+
+/* Optional divider for visual break */
+.newsletter-card::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: #FFC72C;
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+/* ==============================
+   Button (more modern pill)
+   ============================== */
+.newsletter-card button {
+  align-self: flex-start;
+  padding: 10px 18px;
+  background: #182B49;
+  color: #FFC72C;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
 .newsletter-card button:hover {
-  background-color: #FFC72C;
+  background: #FFC72C;
   color: #182B49;
   transform: translateY(-2px);
 }
 
-/* Card Container */
+.newsletter-signoff {
+  margin-top: 18px;
+  font-weight: 600;
+  color: #182B49;
+  text-align: right;
+  font-style: italic;
+  opacity: 0.8;
+}
+/* ==============================
+   Card Container
+   ============================== */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
