@@ -574,17 +574,66 @@ h2 {
   margin-bottom: 12px;
 }
 
-/* ---------- Event Footer ---------- */
+/* ==============================
+   FIX EVENT FOOTER LAYOUT
+   ============================== */
+
 .event-footer {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 8px;
+  align-items: center;
+  margin-top: auto;
   padding-top: 12px;
-  padding-bottom: 12px;
   border-top: 1px solid #f0f0f0;
-  margin-top: auto; /* sticks footer to bottom of card */
+}
+
+/* LEFT SIDE (TAGS) */
+.footer-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* TAG STYLE (kept consistent) */
+.event-tag {
+  background: #fff;
+  color: #000;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ==============================
+   SAVE BUTTON (SMALL SQUARE)
+   ============================== */
+
+.save-btn-square {
+  width: 50px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+
+  background: #0057b8;
+  color: #ffc72c;
+  font-weight: bold;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.save-btn-square.saved {
+  background: #ffc72c;
+  color: #0057b8;
+}
+
+.save-btn-square:hover {
+  transform: scale(1.05);
 }
 
 /* ---------- Tags ---------- */
@@ -809,3 +858,20 @@ h2 {
   border-radius: 8px;
   font-weight: bold;
 }
+
+.going-people {
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.going-name {
+  color: #0072ce;
+  cursor: pointer;
+  margin-right: 6px;
+  text-decoration: underline;
+}
+
+.going-name:hover {
+  color: #004a99;
+}
+

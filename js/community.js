@@ -28,7 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
       interests: ["AI", "Culture", "Art"],
       email: "alice@ucsd.edu",
       instagram: "@alicecodes",
-      image: "images/p1.png"
+      image: "images/p1.png",
+      going: ["SunGod Festival", "Company Tour Viasat"]
     },
     {
       name: "Bob Smith",
@@ -37,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
       interests: ["Nature", "Fitness", "Music"],
       email: "bob@ucsd.edu",
       instagram: "@bobbio",
-      image: "images/p2.png"
+      image: "images/p2.png",
+      going: ["Microadventure Hike", "Midterm De-Stress"]
     },
     {
       name: "Clara Lee",
@@ -46,7 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
       interests: ["Design", "Art", "Professional Development", "Gaming"],
       email: "clara@ucsd.edu",
       instagram: "@claradesign",
-      image: "images/p3.png"
+      image: "images/p3.png",
+      going: ["SunGod Festival", "Pitch Perfect"]
     },
     {
       name: "Daniel Kim",
@@ -55,7 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
       interests: ["Data", "AI", "Travel"],
       email: "daniel@ucsd.edu",
       instagram: "@datadan",
-      image: "images/p4.png"
+      image: "images/p4.png",
+      going: ["UC D.C. Session", "Transfer Career Day"]
     },
     {
       name: "John Snow",
@@ -64,7 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
       interests: ["Gaming", "Fitness"],
       email: "john@ucsd.edu",
       instagram: "@johnsnow",
-      image: "images/p5.jpg"
+      image: "images/p5.jpg",
+      going: []
     },
     {
       name: "Jane Doe",
@@ -73,7 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
       interests: ["Art", "Nature"],
       email: "jane@ucsd.edu",
       instagram: "@janedoe",
-      image: "images/p6.webp"
+      image: "images/p6.webp",
+      going: ["Bingo", "Midterm De-Stress"]
     },
     {
       name: "Spencer Reid",
@@ -82,7 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
       interests: ["Art", "Nature", "Travel"],
       email: "spencer@ucsd.edu",
       instagram: "@spencerreid",
-      image: "images/p7.webp"
+      image: "images/p7.webp",
+      going: ["Hello Keebs & Friends", "Black Violin: Full Circle Tour"]
     },
     {
       name: "Sherlock Holmes",
@@ -91,10 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
       interests: ["Books", "Performing", "Travel"],
       email: "sherlock@ucsd.edu",
       instagram: "@sherlockholmes",
-      image: "images/p8.jpeg"
+      image: "images/p8.jpeg",
+      going: ["Company Tour Viasat", "Black Violin: Full Circle Tour"]
     },
   ];
-
+  localStorage.setItem("people", JSON.stringify(people));
+  
   const peopleContainer = document.getElementById("people-carousel");
 
   const filteredPeople = people.filter(p =>
@@ -105,26 +114,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const displayPeople = filteredPeople.length ? filteredPeople : people;
 
   displayPeople.forEach(p => {
+
     const card = document.createElement("div");
     card.className = "carousel-card people-card";
 
-    // calculate match score (simple but powerful)
+    // ===== MATCH SCORE =====
     let matchScore = 0;
 
-    if (p.major === userMajor) matchScore += 50;
-    const sharedInterests = p.interests.filter(i => userInterests.includes(i));
-    matchScore += sharedInterests.length * 15;
+    if (p.major === userMajor) matchScore += 40;
 
-    // cap at 100
+    const sharedInterests = p.interests.filter(i =>
+      userInterests.includes(i)
+    );
+
+    matchScore += sharedInterests.length * 12;
+
+    if (sharedInterests.length >= 3) matchScore += 10;
+
     matchScore = Math.min(matchScore, 100);
+
+    const vibe =
+      matchScore > 70 ? "Highly Compatible" :
+      matchScore > 40 ? "Good Match" : "Explore";
+
+    // ===== GOING TEXT =====
+    const goingText = p.going?.length
+      ? "Going to: " + p.going.slice(0, 3).join(", ")
+      : "Not going to events yet";
 
     card.innerHTML = `
       <img src="${p.image}">
       <h4>${p.name}</h4>
       <p>${p.major}</p>
-      <p class="match">${matchScore}% match</p>
+
+      <p class="match">${matchScore}% match • ${vibe}</p>
+
       <p class="shared">
-      ${sharedInterests.length ? "Shared: " + sharedInterests.join(", ") : ""}
+        ${sharedInterests.length ? "Shared: " + sharedInterests.join(", ") : ""}
+      </p>
+
+      <p class="going">
+        ${goingText}
       </p>
     `;
 
@@ -144,69 +174,51 @@ document.addEventListener("DOMContentLoaded", () => {
      ============================== */
   const clubsContainer = document.getElementById("clubs-container");
 
-    // Add majors/interests to clubs for personalization
-    const clubs = [
+  const clubs = [
     {
-        name: "Data Science Student Society",
-        desc: "Expanding the horizons of AI & data science through community, curiosity, and collaboration. Join a network of builders and thinkers.",
-        instagram: "@ds3atucsd",
-        image: "images/club1.png",
-        majors: ["Computer Science (B.S.)", "Data Science (B.S.)"],
-        interests: ["AI", "Coding"]
+      name: "Data Science Student Society",
+      desc: "Expanding AI & data science community.",
+      instagram: "@ds3atucsd",
+      image: "images/club1.png",
+      majors: ["Computer Science (B.S.)", "Data Science (B.S.)"],
+      interests: ["AI", "Coding"]
     },
     {
-        name: "Bio Society",
-        desc: "BSSA is dedicated to enriching your undergraduate experience through events that equip you with professional development, community service, + more!",
-        instagram: "@bssa_at_ucsd",
-        image: "images/club2.png",
-        majors: ["Biology (B.S.)", "Public Health (B.S.)"],
-        interests: ["Nature", "Research", "Professional Development"]
-    },
-    {
-        name: "Triton Barbell",
-        desc: "Competitive Powerlifting Club at UC San Diego",
-        instagram: "@tritonbarbell",
-        image: "images/club3.png",
-        majors: [""],
-        interests: ["Fitness"]
-    },
-    {
-        name: "Art Power",
-        desc: "To present performing and media arts that engage, energize, and transform the diverse cultural life of the University and San Diego.",
-        instagram: "@artpoweratucsd",
-        image: "images/club4.png",
-        majors: ["Cognitive Science (B.S.)", "Visual Arts (B.A.)"],
-        interests: ["Art", "Performing"]
+      name: "Bio Society",
+      desc: "Professional development & community service.",
+      instagram: "@bssa_at_ucsd",
+      image: "images/club2.png",
+      majors: ["Biology (B.S.)", "Public Health (B.S.)"],
+      interests: ["Nature", "Research", "Professional Development"]
     }
-    ];
+  ];
 
-    const filteredClubs = clubs.filter(c =>
-  c.majors.includes(userMajor) || // matches user major
-  c.interests.some(i => userInterests.includes(i)) // matches any interest
-);
+  const filteredClubs = clubs.filter(c =>
+    c.majors.includes(userMajor) ||
+    c.interests.some(i => userInterests.includes(i))
+  );
 
-const displayClubs = filteredClubs.length ? filteredClubs : clubs; // fallback if none match
+  const displayClubs = filteredClubs.length ? filteredClubs : clubs;
 
-displayClubs.forEach(c => {
-  const card = document.createElement("div");
-  card.className = "card";
+  displayClubs.forEach(c => {
+    const card = document.createElement("div");
+    card.className = "card";
 
-  card.innerHTML = `
-    <img src="${c.image}" onerror="this.src='https://via.placeholder.com/220x140'">
-    <h4>${c.name}</h4>
-    <p>${c.desc}</p>
-  `;
+    card.innerHTML = `
+      <img src="${c.image}">
+      <h4>${c.name}</h4>
+      <p>${c.desc}</p>
+    `;
 
-  card.dataset.type = "club";
-  card.dataset.name = c.name;
-  card.dataset.desc = c.desc;
-  card.dataset.instagram = c.instagram;
-  card.dataset.img = c.image;
+    card.dataset.type = "club";
+    card.dataset.name = c.name;
+    card.dataset.desc = c.desc;
+    card.dataset.instagram = c.instagram;
+    card.dataset.img = c.image;
 
-  clubsContainer.appendChild(card);
-});
-
-    /* ==============================
+    clubsContainer.appendChild(card);
+  });
+  /* ==============================
      STUDY GROUPS (Dynamic by Major)
      ============================== */
 
@@ -265,8 +277,9 @@ displayClubs.forEach(c => {
     groupsContainer.appendChild(card);
   });
 
+
   /* ==============================
-     MODAL (WORKS FOR ALL)
+     MODAL
      ============================== */
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modal-img");
@@ -291,17 +304,10 @@ displayClubs.forEach(c => {
       `;
     }
 
-    else if (card.dataset.type === "club") {
+    if (card.dataset.type === "club") {
       modalDesc.innerHTML = `
         ${card.dataset.desc}<br><br>
         📸 ${card.dataset.instagram}
-      `;
-    }
-
-    else if (card.dataset.type === "group") {
-      modalDesc.innerHTML = `
-        Study Group<br><br>
-        📧 ${card.dataset.email}
       `;
     }
   });
@@ -316,9 +322,14 @@ displayClubs.forEach(c => {
 
 });
 
-const name = localStorage.getItem("name");
-const initial = document.getElementById("profile-initial");
+/* ==============================
+   Profile Initial
+   ============================== */
+if (document.getElementById("profile-initial")) {
+  const name = localStorage.getItem("name");
+  const initial = document.getElementById("profile-initial");
 
-if (name && initial) {
-  initial.textContent = name.charAt(0).toUpperCase();
+  if (name && initial) {
+    initial.textContent = name.charAt(0).toUpperCase();
+  }
 }
