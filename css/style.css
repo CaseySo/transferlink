@@ -592,6 +592,71 @@ h2 {
 }
 
 /* ==============================
+   "Where to Find More" Box
+   ============================== */
+   .more-section {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.more-card {
+  text-align: center;
+  background-color: #ffffff;
+  color: #182B49;
+  padding: 60px 20px;
+  border-radius: 16px;
+  max-width: 1000px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.more-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.more-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.more-card li {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  color: #333;
+}
+.more-box {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border: 1px solid #eef1f6;
+}
+
+/* small intro text */
+.more-box p {
+  margin-bottom: 18px;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* each item */
+.more-item {
+  background: #f7f9ff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #182B49;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+
+/* ==============================
    Modal Styles
    ============================== */
 .modal {

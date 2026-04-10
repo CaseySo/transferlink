@@ -39,38 +39,55 @@ function setupSearch(inputId, dropdownId, dataList) {
   const dropdown = document.getElementById(dropdownId);
   if (!input || !dropdown) return;
 
-  input.addEventListener("input", () => {
-    const query = input.value.toLowerCase();
+  // Render dropdown helper
+  function renderDropdown(list) {
     dropdown.innerHTML = "";
 
-    if (!query) {
-      dropdown.style.display = "none";
-      return;
-    }
-
-    const filtered = dataList.filter(item => item.toLowerCase().includes(query));
-    filtered.forEach(item => {
+    list.forEach(item => {
       const div = document.createElement("div");
       div.className = "dropdown-item";
       div.textContent = item;
+
       div.addEventListener("click", () => {
         input.value = item;
         dropdown.style.display = "none";
       });
+
       dropdown.appendChild(div);
     });
 
-    dropdown.style.display = filtered.length ? "block" : "none";
+    dropdown.style.display = list.length ? "block" : "none";
+  }
+
+  // TYPE TO FILTER
+  input.addEventListener("input", () => {
+    const query = input.value.toLowerCase();
+
+    const filtered = dataList.filter(item =>
+      item.toLowerCase().includes(query)
+    );
+
+    renderDropdown(filtered);
   });
 
-  // Hide dropdown when clicking outside
+  // CLICK / FOCUS TO SHOW FULL LIST (ONLY IF EMPTY)
+  input.addEventListener("focus", () => {
+    if (input.value.trim() !== "") return;
+    renderDropdown(dataList);
+  });
+
+  input.addEventListener("click", () => {
+    if (input.value.trim() !== "") return;
+    renderDropdown(dataList);
+  });
+
+  // CLICK OUTSIDE TO CLOSE
   document.addEventListener("click", (e) => {
     if (!input.contains(e.target) && !dropdown.contains(e.target)) {
       dropdown.style.display = "none";
     }
   });
 }
-
 // Track selected interests
 const selectedInterests = new Set();
 function updateCounter() {
@@ -97,6 +114,7 @@ function finishProfile() {
 
   window.location.href = "home.html";
 }
+
 
 /* ==============================
    DOM Loaded
