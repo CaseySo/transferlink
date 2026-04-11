@@ -232,6 +232,11 @@ document.addEventListener("DOMContentLoaded", () => {
             info: "Willo was built at UC San Diego to make wellness support easier to access and easier to use. It connects students to trusted campus resources, guided collections, events, and self-care tools in one place, with clear pathways for both everyday support and urgent help." ,
             link: "https://willo.ucsd.edu/"
         },
+        { name: "Basic Needs Center", 
+            image: "images/basicneeds.jpeg", 
+            info: "Our mission is to address the gaps and concerns students have with accessing nutritious food, stable housing, and financial wellness resources. We are committed to equitably minimize basic needs challenges for all students." ,
+            link: "https://basicneeds.ucsd.edu/"
+        },
         { name: "Campus Police", 
             image: "images/police.webp", 
             info: "Late night escorts, safety related services, and crime reporting" ,
